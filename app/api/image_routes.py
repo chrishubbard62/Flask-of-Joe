@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect, render_template
-from app.models import db, Post
+from app.models import db, CoffeeImage
 from flask_login import current_user, login_required
 from ..forms.img_form import ImageForm
 from app.api.aws_helpers import (
@@ -30,11 +30,12 @@ def upload_image():
 
 
         url = upload["url"]
-        new_image = Post(url= url)
+        new_image = CoffeeImage(url= url)
         # im thinking image has to be url instead
         db.session.add(new_image)
         db.session.commit()
-        return redirect("/posts/all")
+        #may fix later
+        return redirect("/")
 
     if form.errors:
         print('\n this is errors \n',form.errors)

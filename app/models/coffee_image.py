@@ -1,6 +1,6 @@
 from .db import db, add_prefix_for_prod, environment, SCHEMA
 
-class CoffeeImage(db.Models):
+class CoffeeImage(db.Model):
   __tablename__ = 'coffee_images'
 
   if environment == "production":
