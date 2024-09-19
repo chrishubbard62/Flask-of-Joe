@@ -3,6 +3,7 @@ from sqlalchemy.sql import text
 from app.models import SCHEMA, db, environment, Coffee
 from .users import bobbie, demo, marnie
 
+# these numbers are actually misleading
 coffee1 = Coffee(name='Ritual coffee',
                     price=19.99,
                     description='This bag of coffee is the best!',
