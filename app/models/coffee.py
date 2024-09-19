@@ -15,10 +15,10 @@ class Coffee(db.Model):
   region = db.Column(db.String(20), nullable=False)
 
   owner = db.relationship('User', back_populates='coffees')
-  favorites = db.relationship('Favorite', back_populates='coffee')
-  coffee_images = db.relationship('CoffeeImage', back_populates='coffee')
-  reviews = db.relationship('Review', back_populates='coffee')
-  cart_item = db.relationship('CartItem', back_populates='coffee')
+  favorites = db.relationship('Favorite', back_populates='coffee', cascade='all, delete-orphan')
+  coffee_images = db.relationship('CoffeeImage', back_populates='coffee', cascade='all, delete-orphan')
+  reviews = db.relationship('Review', back_populates='coffee', cascade='all, delete-orphan')
+  cart_item = db.relationship('CartItem', back_populates='coffee', cascade='all, delete-orphan')
 
 
   def to_dict_basic(self):
