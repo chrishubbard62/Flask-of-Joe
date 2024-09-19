@@ -17,6 +17,7 @@ class Coffee(db.Model):
   owner = db.relationship('User', back_populates='coffees')
   favorites = db.relationship('Favorite', back_populates='coffee')
   coffee_images = db.relationship('CoffeeImage', back_populates='coffee')
+  reviews = db.relationship('Review', back_populates='coffee')
 
   def to_dict_basic(self):
     return {
