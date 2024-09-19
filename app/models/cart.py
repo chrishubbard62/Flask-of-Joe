@@ -11,7 +11,9 @@ class Cart(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
   #!Relations...
-  user = db.Column('User', back_populates='carts')
+  user = db.relationship('User', back_populates='carts')
+  cart_items = db.relationship('CartItem', back_populates='cart')
+
 
   def to_dict_basic(self):
     return {
