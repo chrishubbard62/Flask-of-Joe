@@ -52,7 +52,7 @@ def seed_coffees():
 # it will reset the primary keys for you as well.
 def undo_coffees():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.tweets RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.coffees RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM coffees"))
 
