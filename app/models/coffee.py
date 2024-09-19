@@ -1,6 +1,6 @@
 from .db import db
 
-class Coffee(db.Models):
+class Coffee(db.Model):
   __tablename__ = 'coffees'
 
   id = db.Column(db.Integer, primary_key=True)
