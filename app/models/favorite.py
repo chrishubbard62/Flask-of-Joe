@@ -1,13 +1,18 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Favorite(db.Model):
   __tablename__ = 'favorites'
 
+  if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
   id = db.Column(db.Integer, primary_key=True)
-  user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-  coffee_id = db.Column(db.Integer, db.ForeignKey('coffees.id'), nullable=False)
+  user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+  coffee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('coffees.id')), nullable=False)
 
   #!Relations...
+  user = db.relationship('User', back_populates='favorites')
+  coffee = db.relationship('Coffee', back_populates='favorites')
 
   def to_dict_basic(self):
     return {
