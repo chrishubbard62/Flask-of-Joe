@@ -31,3 +31,9 @@ class Coffee(db.Model):
       "roast": self.roast,
       "region": self.region
     }
+
+  def to_dict_picture(self):
+     return {
+        **self.to_dict_basic(),
+        "coffeeImages": [image.to_dict_basic() for image in self.coffee_images]
+     }
