@@ -12,7 +12,7 @@ class Coffee(db.Model):
   price = db.Column(db.Float(), nullable=False)
   description = db.Column(db.String(500), nullable=False)
   roast = db.Column(db.String(20), nullable=False)
-  region = db.Column(db.String(20), nullable=False)
+  region = db.Column(db.String(50), nullable=False)
 
   owner = db.relationship('User', back_populates='coffees')
   favorites = db.relationship('Favorite', back_populates='coffee', cascade='all, delete-orphan')
@@ -35,5 +35,6 @@ class Coffee(db.Model):
   def to_dict_picture(self):
      return {
         **self.to_dict_basic(),
-        "coffeeImages": [image.to_dict_basic() for image in self.coffee_images]
+        "coffeeImages": [image.to_dict_basic() for image in self.coffee_images],
+        "owner": self.owner.to_dict()
      }
