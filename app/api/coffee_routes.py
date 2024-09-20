@@ -15,6 +15,22 @@ def all_coffee():
   return {"Coffees" : [coffee.to_dict_picture() for coffee in coffees]}
 
 
+@coffee_routes.route('/current')
+@login_required
+def user_coffee():
+  """
+  Queries all the coffees owned by the current user also returns the user info
+  """
+  return {"Coffee": [coffee.to_dict_picture() for coffee in current_user.coffees]}
 
+
+@coffee_routes.route('/<int:id>')
+def single_coffee(id):
+  """
+  Queries a single coffee based on that coffees id
+  """
+  coffee = Coffee.query.get(id)
+
+  return coffee.to_dict_picture()
 
 #?############################# Chris #################################################################
