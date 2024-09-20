@@ -30,12 +30,12 @@ def upload_image():
 
 
         url = upload["url"]
-        new_image = CoffeeImage(url= url)
+        new_image = CoffeeImage(url= url, coffee_id=1)
         # im thinking image has to be url instead
         db.session.add(new_image)
         db.session.commit()
         #may fix later
-        return redirect("/")
+        return {'url': url}
 
     if form.errors:
         print('\n this is errors \n',form.errors)
