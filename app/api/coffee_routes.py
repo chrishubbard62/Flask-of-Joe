@@ -43,7 +43,7 @@ def make_review(coffee_id):
   
   if current_user.id == coffee.owner_id:
     return {'message': "Forbidden"}, 403
-
+  
   form = ReviewsForm()
 
   form['csrf_token'].data = request.cookies['csrf_token']
