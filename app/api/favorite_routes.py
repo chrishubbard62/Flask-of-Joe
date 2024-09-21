@@ -1,7 +1,6 @@
 from flask import Blueprint
 from flask_login import login_required, current_user
 from app.models import User, Favorite, db, Coffee
-from sqlalchemy import and_
 
 favorite_routes = Blueprint('favorites', __name__)
 
