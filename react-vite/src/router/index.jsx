@@ -1,8 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
+import CoffeeFormPage from '../components/CoffeeFormPage'
 import Layout from './Layout';
 import UploadPicture from '../components/UploadPicture/UploadPicture';
+
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,10 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
       },
+      {
+        path: "form",
+        element: <CoffeeFormPage />
+      }
     ],
   },
 ]);
