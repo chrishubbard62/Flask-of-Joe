@@ -8,7 +8,6 @@ class Review(db.Model):
   if environment == "production":
      __table_args__ = {'schema': SCHEMA}
 
-
   id = db.Column(db.Integer, primary_key=True)
   review = db.Column(db.String(200), nullable=False)
   ## could be without img? img = db.Column(db.String, nullable=False)
