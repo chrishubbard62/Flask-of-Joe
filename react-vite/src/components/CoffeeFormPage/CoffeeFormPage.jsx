@@ -31,17 +31,13 @@ function CoffeeFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setSubmitted(true);
     if(Object.values(valErrors).length) {
-
-      return navigate('/login')
+      console.log(submitted)
     } else {
       return navigate('/')
     }
-
   }
-
 
   return (
     <div>
