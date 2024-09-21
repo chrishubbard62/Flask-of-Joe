@@ -152,6 +152,15 @@ def make_review(coffee_id):
   if current_user.id == coffee.owner_id:
     return {'message': "Forbidden"}, 403
   
+  existed_review = Review.query.filter(
+    Review.user_id == current_user.id,
+    Review.coffee_id == coffee.id
+  ).first()
+
+  print(existed_review)
+  if existed_review:
+    return {"message": "User already has a review for this spot"}, 500
+  
   form = ReviewsForm()
 
   form['csrf_token'].data = request.cookies['csrf_token']
