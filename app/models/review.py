@@ -1,5 +1,5 @@
 from .db import db, add_prefix_for_prod, environment, SCHEMA
-
+from .user import User
 
 class Review(db.Model):
   __tablename__ = 'reviews'
@@ -23,8 +23,20 @@ class Review(db.Model):
     return {
       "id": self.id,
       "review": self.review,
-      "img": self.img,
       "stars": self.stars,
       "userId": self.user_id,
       "coffeeId": self.coffee_id,
+    }
+  
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "review": self.review,
+      "stars": self.stars,
+      "userId": self.user_id,
+      "coffeeId": self.coffee_id,
+      "User": {
+        "id": self.user_id,
+        "username": self.user.username
+      }
     }
