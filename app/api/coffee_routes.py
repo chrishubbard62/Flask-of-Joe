@@ -157,7 +157,6 @@ def make_review(coffee_id):
     Review.coffee_id == coffee.id
   ).first()
 
-  print(existed_review)
   if existed_review:
     return {"message": "User already has a review for this spot"}, 500
   
