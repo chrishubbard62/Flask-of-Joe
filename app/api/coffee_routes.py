@@ -74,7 +74,7 @@ def create_coffee():
 
     return coffee.to_dict_basic(), 201
 
-  return form.errors, 401
+  return {"errors": format_errors_reviews(form.errors)}, 400 ## added on sunday not tested
 
 
 @coffee_routes.route('/<int:id>', methods=["PUT"])
@@ -101,7 +101,7 @@ def update_coffee(id):
     db.session.commit()
     return coffee.to_dict_basic()
 
-  return form.errors, 401
+  return {"errors": format_errors_reviews(form.errors)}, 400 ## added on sunday not tested
 
 
 @coffee_routes.route('/<int:id>', methods=['DELETE'])
@@ -133,7 +133,7 @@ def coffee_reviews(coffee_id):
   coffee = Coffee.query.get(coffee_id)
   if not coffee:
     return {"message": "Coffee couldn't be found"}, 404
-  
+
   reviews = Review.query.filter_by(coffee_id=coffee_id).all()
 
   return {'Reviews': [review.to_dict() for review in reviews]}
@@ -148,10 +148,10 @@ def make_review(coffee_id):
   # check coffee exist or not and if the curr user is the owner of that coffee
   if not coffee:
     return {"message": "Coffee couldn't be found"}, 404
-  
+
   if current_user.id == coffee.owner_id:
     return {'message': "Forbidden"}, 403
-  
+
   existed_review = Review.query.filter(
     Review.user_id == current_user.id,
     Review.coffee_id == coffee.id
@@ -159,7 +159,7 @@ def make_review(coffee_id):
 
   if existed_review:
     return {"message": "User already has a review for this spot"}, 500
-  
+
   form = ReviewsForm()
 
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -174,7 +174,7 @@ def make_review(coffee_id):
     db.session.commit()
 
     return new_review.to_dict()
-  
+
   if form.errors:
     return {"errors": format_errors_reviews(form.errors)}, 400
 #!######################### Luna ##############################
