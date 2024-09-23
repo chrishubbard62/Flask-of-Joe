@@ -1,0 +1,47 @@
+
+
+.your-favs-second-nav{
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+.left-nav-area{
+    display: flex;
+}
+.search-bar-area{
+    /* border: 2px purple solid; */
+    margin: 10px;
+}
+.search-input{
+    height: 48px;
+    border: 1px solid lightgrey;
+    border-radius: 26px;
+    font-size: 17px;
+    text-indent: 15px;
+    width: 100%
+}
+.div-card-container{
+    /* border: 2px green solid; */
+    display: flex;
+    gap: 5px;
+}
+.coffee-card-favs{
+    border: 1px lightgrey solid;
+    border-radius: 10px;
+    width: 230px; /* or width: 24% */
+}
+
+@media screen and (max-width: 1200px) {
+    /* make cards a certain size to fit only 2 */
+    .coffee-card-favs{
+        width: 24%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    /* make cards a certain size to fit only 2 */
+    .coffee-card-favs{
+        width: 49%;
+    }
+}

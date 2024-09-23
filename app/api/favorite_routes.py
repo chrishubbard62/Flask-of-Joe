@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask_login import login_required, current_user
-from app.models import User, Favorite, db, Coffee
+from app.models import Favorite, db, Coffee
 
 favorite_routes = Blueprint('favorites', __name__)
 
@@ -12,7 +12,7 @@ def favs():
     '''
     users_favs = Favorite.query.filter(Favorite.user_id == current_user.id).all()
     # will want to return the coffee as well
-    return [coffee.to_dict_basic() for coffee in users_favs]
+    return [coffee.to_dict() for coffee in users_favs]
 
 
 @favorite_routes.route('/<int:coffee_id>', methods=['POST'])
@@ -21,7 +21,7 @@ def new_fav(coffee_id):
     '''
     Create a new favorite for the current user. checks if coffee exists and if you already favorite it
     '''
-    already_exist = Favorite.query.filter(Favorite.coffee_id == coffee_id and Favorite.user_id == current_user.id).first()
+    already_exist = Favorite.query.filter(Favorite.coffee_id == coffee_id).filter(Favorite.user_id == current_user.id).first()
     if already_exist:
         return {'errors':'This favorite already exists!'}
 
