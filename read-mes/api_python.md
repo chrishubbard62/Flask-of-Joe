@@ -164,9 +164,9 @@ Delete an existing review.
 
 
 
-## favorites
+## Favorites
 
-### get all favorites of a user
+### Get all favorites of a user
 Returns all the favorites of the current user
 
 * Required Authentication: True
@@ -199,7 +199,7 @@ Returns all the favorites of the current user
     ```
 
 
-### add an item to favorites
+### Add an item to favorites
 
 add an item to favorites page
 
@@ -229,7 +229,7 @@ add an item to favorites page
     }
     ```
 
-### delete one from favorites
+### Delete one from favorites
 
 Deletes a favorite from favorites.
 
@@ -252,9 +252,9 @@ Deletes a favorite from favorites.
     }
     ```
 
-## coffee images
+## Coffee images
 
-### add image
+### Add image
 
 add an image to a coffee product
 
@@ -284,7 +284,7 @@ add an image to a coffee product
       "url": "www.example.com"
     }
     ```
-### get coffee image
+### Get coffee image
 
 Returns the images of the current coffee product.
 
@@ -307,7 +307,7 @@ Returns the images of the current coffee product.
       "url": "www.example.com"
     }
     ```
-### delete image
+### Delete image
 
 Deletes an existing image.
 
@@ -327,5 +327,259 @@ Deletes an existing image.
     ```json
     {
       "message": "Successfully deleted"
+    }
+    ```
+
+## Cart
+### Get the current user's Cart Items
+
+Return all the items in current user's cart.
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/cart/current
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "cartId": 1,
+      "userId": 1,
+      "CartItems": [
+        {
+          "id": 1,
+          "Coffee": {
+            "coffeeId": 1,
+            "name": "ritual coffee",
+            "price": 10.99,
+            "roast": "expresso",
+            "region": "Hawaii"
+          },
+          "quantity": 1000
+        }
+      ],
+      "totalAmount": 10990
+    }
+    ```
+
+### Create a cart for current user
+
+Create a pending cart for current user
+* Require Authentication: true
+* Request
+  * Method: POST
+  * URL: /api/cart/current
+  * Body: 
+
+    ```json
+    {
+
+    }
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "userId": 1,
+      "pending": True
+    }
+    ```
+
+### Submit a cart for current user
+
+Submit a pending cart for current user
+* Require Authentication: true
+* Request
+  * Method: UPDATE
+  * URL: /api/cart/current
+  * Body: 
+
+    ```json
+    {}
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "userId": 1,
+      "pending": False
+    }
+    ```
+
+## Cart Items
+### Add cart items
+
+Add a cart item to a pending cart
+* Require Authentication: true
+* Require proper authorization: cart items must not belong to current user
+
+* Request
+  * Method: POST
+  * URL: /api/cart/:cartId
+  * Body: 
+
+    ```json
+    {
+      "coffeeId": 1,
+      "quantity": 1
+    }
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "coffeeId": 1,
+      "cartId": 1,
+      "quantity": 1
+    }
+    ```
+
+* Error response: Couldn't find a Coffee with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Coffee couldn't be found"
+    }
+    ```
+
+* Error response: Couldn't find a Cart with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Cart couldn't be found"
+    }
+    ```
+
+* Error response: Cannot add any more cart items because there is a maximum of 99 items per cart
+  * Status Code: 403
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Maximum number of cart items was reached"
+    }
+    ```
+
+### Delete cart items
+
+Delete a cart item to a pending cart
+* Require Authentication: true
+* Request
+  * Method: DELETE
+  * URL: /api/cartItems/:cartItemsId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted"
+    }
+    ```
+
+* Error response: Couldn't find a CartItem with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body: 
+
+    ```json
+    {
+      "message": "CartItems couldn't be found"
+    }
+    ```
+
+### Update cart item
+
+Change the number cart item to a pending cart
+* Require Authentication: true
+
+* Request
+  * Method: PUT
+  * URL: /api/cartItems/:cartItemsId
+  * Body: 
+
+    ```json
+    {
+      "quantity": 10
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "coffeeId": 1,
+      "cartId": 1,
+      "quantity": 10
+    }
+    ```
+
+* Error Response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Bad Request", // (or "Validation error" if generated by Sequelize),
+      "errors": {
+        "quantity": "quantity must be an integer within 1 and 99"
+      }
+    }
+    ```
+
+* Error response: Couldn't find a cart item with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Cart item couldn't be found"
     }
     ```
