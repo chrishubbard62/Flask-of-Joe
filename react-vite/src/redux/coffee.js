@@ -28,12 +28,49 @@ export const createImage = (post) => async (dispatch) => {
     }
 };
 
+//!--------------------------Luna---------------------------------
+const GET_COFFEE = 'coffee/getCoffee';
+
+const getCoffee = (payload) => {
+    return {
+        type: GET_COFFEE,
+        payload
+    }
+};
+
+export const getCoffeeThunk = (coffeeId) => async(dispatch) => {
+    const res = await fetch(`/api/coffees/${coffeeId}`);
+    if (res.ok) {
+        const coffee = await res.json();
+        dispatch(getCoffee(coffee));
+        return coffee;
+    } else {
+        const err = await res.json();
+        return err;
+    }
+}
+
+//!--------------------------Luna---------------------------------
 const initialState = {}
 
 export default function coffeeReducer(state = initialState, action){
     switch (action.type){
         case ADD_IMAGE:
             return {...state, ImageUrls: action.payload}
+
+ //!--------------------------Luna---------------------------------
+        case GET_COFFEE: {
+            const newState = {...state};
+            const coffee = action.payload;
+            if (state[coffee.id]) {
+                newState[coffee.id] = {...state[coffee.id], ...coffee};
+            } else {
+                newState[coffee.id] = coffee;
+            }
+
+            return newState;
+        }
+//!--------------------------Luna---------------------------------
         default:
             return state
     }
