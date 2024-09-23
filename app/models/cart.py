@@ -21,3 +21,9 @@ class Cart(db.Model):
       "pending": self.pending,
       "userId": self.user_id,
     }
+
+  def to_dict(self):
+    return {
+      **self.to_dict_basic(),
+      "cartItems": self.cart_items,
+    }
