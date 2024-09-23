@@ -36,5 +36,6 @@ class Coffee(db.Model):
      return {
         **self.to_dict_basic(),
         "coffeeImages": [image.to_dict_basic() for image in self.coffee_images],
+        "reviews": [review.to_dict_basic() for review in self.reviews],
         "owner": self.owner.to_dict()
      }

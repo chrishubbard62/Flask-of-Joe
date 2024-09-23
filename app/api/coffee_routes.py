@@ -133,7 +133,7 @@ def coffee_reviews(coffee_id):
   coffee = Coffee.query.get(coffee_id)
   if not coffee:
     return {"message": "Coffee couldn't be found"}, 404
-  
+
   reviews = Review.query.filter_by(coffee_id=coffee_id).order_by(Review.created_at.desc()).all()
 
   return {'Reviews': [review.to_dict() for review in reviews]}
