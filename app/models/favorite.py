@@ -20,3 +20,10 @@ class Favorite(db.Model):
       "userId": self.user_id,
       "coffeeId": self.coffee_id,
     }
+
+  def to_dict(self):
+     return{
+        **self.to_dict_basic(),
+        "coffee": self.coffee.to_dict_picture(),
+        "user": self.user.to_dict()
+     }

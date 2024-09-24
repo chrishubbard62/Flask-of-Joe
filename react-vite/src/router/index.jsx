@@ -3,8 +3,9 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import CoffeeFormPage from '../components/CoffeeFormPage'
 import Layout from './Layout';
-import UploadPicture from '../components/UploadPicture/UploadPicture';
-
+import CoffeeContainer from '../components/CoffeeContainer';
+import FavoritesPage from '../components/FavoritesPage/FavoritesPage';
+import CoffeeDetailsPage from '../components/CoffeeDetailsPage/CoffeeDetailsPage';
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <UploadPicture />,
+        element: <CoffeeContainer />
       },
       {
         path: "login",
@@ -25,7 +26,24 @@ export const router = createBrowserRouter([
       {
         path: "form",
         element: <CoffeeFormPage />
+      },
+//!----------------------Luna---------------------------
+      {
+        path: "coffees",
+        children: [
+          {
+            path: ":id",
+            element: <CoffeeDetailsPage />
+          }
+        ]
+      },
+//!----------------------Luna---------------------------
+      //===========lalos router changes ============
+      {
+        path: 'favorites',
+        element: <FavoritesPage />
       }
+      //===========lalos router changes ============
     ],
   },
 ]);

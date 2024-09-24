@@ -1,0 +1,40 @@
+.disabled {
+  display: none;
+}
+
+.review-list-whole {
+  grid-column: 1 / 3;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 94%;
+}
+
+.review-list-summary {
+  text-align: left;
+  width: 100%;
+}
+
+.review-details {
+  width: 100%;
+}
+
+.review-details ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.review-details li {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.review-details p {
+  width: 100%;
+}
+
+
