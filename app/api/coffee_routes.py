@@ -36,7 +36,7 @@ def user_coffees():
   """
   Queries all the coffees owned by the current user also returns the user info
   """
-  return {"Coffee": [coffee.to_dict_picture() for coffee in current_user.coffees]}
+  return {"usersCoffees": [coffee.to_dict_picture() for coffee in current_user.coffees]}
 
 
 @coffee_routes.route('/<int:id>')

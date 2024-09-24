@@ -52,7 +52,6 @@ export const createImage = (post) => async (dispatch) => {
 //===============Lalos coffee.js code ==========================
 
 
-
 //===============Lalos coffee.js code ==========================
 
 
@@ -100,7 +99,8 @@ export default function coffeeReducer(state = initialState, action) {
         }
         //? Chris /////////////////////////////////////////////////////////////////////////////////////
         //===================Lalos reducer code========================
-
+        case GET_CURRENT_USER_COFFEES:
+            return {...state, ...action.payload}
         //===================Lalos reducer code========================
 
         //!--------------------------Luna---------------------------------
