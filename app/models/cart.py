@@ -25,5 +25,5 @@ class Cart(db.Model):
   def to_dict(self):
     return {
       **self.to_dict_basic(),
-      "cartItems": self.cart_items,
+      "cartItems": [cartItem.to_dict_basic() for cartItem in self.cart_items],
     }

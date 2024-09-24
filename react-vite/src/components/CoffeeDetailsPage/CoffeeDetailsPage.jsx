@@ -5,15 +5,18 @@ import { useParams } from "react-router-dom";
 import { getCoffeeThunk } from "../../redux/coffee";
 import { getReviewsThunk } from "../../redux/review";
 import ReviewList from "./ReviewList";
+import { addCartItemThunk, getCartThunk } from "../../redux/cart";
 
 function CoffeeDetailsPage() {
   const { id: coffeeId } = useParams();
   const dispatch = useDispatch();
   const coffee = useSelector((state) => state.coffee[coffeeId]);
   const reviewsObj = useSelector((state) => state.review);
-  const reviews = Object.values(reviewsObj)
+  const reviews = Object.values(reviewsObj);
+  const userCart = useSelector((state) => state.cart);
+  const userCartId = userCart.currentCartId;
 
-  // console.log(reviews)
+  // console.log(userCartId)
 
   const [ isLoaded, setIsLoaded ] = useState(false);
 
@@ -21,7 +24,8 @@ function CoffeeDetailsPage() {
     dispatch(getCoffeeThunk(coffeeId))
       .then(() => setIsLoaded(true))
     
-    dispatch(getReviewsThunk(coffeeId))
+    dispatch(getReviewsThunk(coffeeId));
+    dispatch(getCartThunk());
   }, [dispatch, coffeeId])
 
   if (!isLoaded) {
@@ -57,7 +61,10 @@ function CoffeeDetailsPage() {
             <p>$ {price}</p>
             <p>Region: {region}</p>
             <p>Roast: {roast}</p>
-            <button>Add to Cart</button>
+            <button
+              onClick={() => 
+                dispatch(addCartItemThunk({coffee_id: coffee.id, quantity: 1, cart_id: userCartId}))}
+            >Add to Cart</button>
           </div>
 
           <div className="coffee-detail-page-owner-desc">

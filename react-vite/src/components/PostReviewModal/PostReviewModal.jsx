@@ -7,7 +7,7 @@ import { addReviewThunk } from '../../redux/review';
 
 
 export default function PostReviewModal({ coffeeId }) {
-  console.log(coffeeId)
+  // console.log(coffeeId)
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [stars, setStars] = useState(0);

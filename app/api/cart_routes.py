@@ -47,7 +47,7 @@ def add_item():
     cart = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.pending.is_(True)).first()
     coffee = Coffee.query.filter(Coffee.id == data['coffee_id']).first()
 
-    if not coffee.owner_id == current_user.id:
+    if coffee.owner_id == current_user.id:
         return {"errors":"This coffee does not belong to the current user!"},403
     if not coffee:
         return {"errors":"Cannot find this coffee"},404
