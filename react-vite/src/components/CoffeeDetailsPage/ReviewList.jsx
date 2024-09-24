@@ -8,7 +8,7 @@ import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal.jsx";
 function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
   const sessionUser = useSelector(state => state.session.user);
   // const dispatch = useDispatch();
-  // console.log(coffee, reviews)
+  // console.log(sessionUser)
 
   if (!reviews) {
     return (
@@ -23,10 +23,13 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
   };
 
   const isDisabledDelete = (review) => {
-    return !Object.values(sessionUser).length || sessionUser.id !== review.User.id;
+    return sessionUser === null 
+          ||!Object.values(sessionUser).length 
+          || sessionUser.id !== review.User.id;
   };
 
-  const isDisabledReview = !Object.values(sessionUser).length 
+  const isDisabledReview = sessionUser === null
+                            || sessionUser && !Object.values(sessionUser).length 
                             || id === sessionUser.id
                             || reviews.find(review => review.userId === sessionUser.id 
                                             && review.coffeeId === coffee.id
