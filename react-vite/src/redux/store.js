@@ -8,12 +8,14 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import coffeeReducer from './coffee'
 import reviewReducer from "./review";
+import favoritesReducer from "./favorites";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   coffee: coffeeReducer,
   //!----------Luna-----------
   review: reviewReducer,
+  favorite: favoritesReducer,
 });
 
 let enhancer;
