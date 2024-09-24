@@ -52,7 +52,7 @@ function CoffeeDetailsPage() {
         <p>$ {price}</p>
         <p>Region: {region}</p>
         <p>Roast: {roast}</p>
-        <button>Add to Cart(TBD)</button>
+        <button>Add to Cart</button>
       </div>
 
       <div>
@@ -60,7 +60,10 @@ function CoffeeDetailsPage() {
         <p>Description: {description}</p>
       </div>
 
-      <ReviewList reviews={reviews} />
+      <ReviewList 
+      reviews={reviews} 
+      coffee={coffee}
+      />
     </div>
   )
 }

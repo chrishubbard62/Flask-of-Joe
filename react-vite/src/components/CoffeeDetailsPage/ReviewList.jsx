@@ -1,10 +1,14 @@
 // import { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import "./ReviewList.css";
+import OpenModalButton from "../OpenModalButton/OpenModalButton.jsx";
+import PostReviewModal from "../PostReviewModal/PostReviewModal.jsx";
+import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal.jsx";
 
-
-function ReviewList({ reviews }) {
-  // const sessionUser = useSelector(state => state.session.user)
-  // console.log(sessionUser)
+function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
+  const sessionUser = useSelector(state => state.session.user);
+  // const dispatch = useDispatch();
+  // console.log(coffee, reviews)
 
   if (!reviews) {
     return (
@@ -12,11 +16,28 @@ function ReviewList({ reviews }) {
     )
   }
 
+  const calculateAvgRating = (reviews) => {
+    const totalStars = reviews.reduce((sum, review) => sum + review.stars, 0);
+    const avgRating = (totalStars / reviews.length).toFixed(1);
+    return avgRating;
+  };
+
+  const isDisabledDelete = (review) => {
+    return !Object.values(sessionUser).length || sessionUser.id !== review.User.id;
+  };
+
+  const isDisabledReview = !Object.values(sessionUser).length 
+                            || id === sessionUser.id
+                            || reviews.find(review => review.userId === sessionUser.id 
+                                            && review.coffeeId === coffee.id
+                                          )
+
+  // console.log(isDisabledReview)
   return (
     <div className="review-list">
       <div className="review-sum">
         <p>{reviews.length} Reviews</p>
-        <p>🌟🌟🌟🌟🌟Star Postion</p>
+        <p>🌟🌟🌟🌟🌟 {calculateAvgRating(reviews) }</p>
       </div>
 
       <div className="review-details">
@@ -26,7 +47,16 @@ function ReviewList({ reviews }) {
               return (<li key={review.id}>
                 <p>🌟🌟🌟🌟🌟{review.stars}</p>
                 <p>{review.review}</p>
+                <p>{review.createdAt}</p>
                 <p>{review.User.username}</p>
+                <div
+                  className={isDisabledDelete(review) ? 'disabled' : 'delete-review-button'}
+                >
+                  <OpenModalButton
+                    buttonText='Delete'
+                    modalComponent={<DeleteReviewModal review={review} />}
+                  />
+                  </div>
               </li>)
             })
           }
@@ -34,7 +64,14 @@ function ReviewList({ reviews }) {
       </div>
 
       <div className="manage-review">
-          <button>Make review(TBD)</button>
+          <div
+            className={isDisabledReview ? 'disabled' : 'make-review-button'}
+          >
+            <OpenModalButton
+              buttonText="Post Your Review"
+              modalComponent={<PostReviewModal coffeeId={coffee.id} />}
+            />
+          </div>
       </div>
     </div>
   )
