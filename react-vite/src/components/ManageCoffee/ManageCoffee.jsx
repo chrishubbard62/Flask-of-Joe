@@ -1,41 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './ManageCoffee.css';
 import { useDispatch, useSelector } from 'react-redux';
-import * as coffeeActions from '../../redux/coffee';
+import * as userCoffeeActions from '../../redux/usersCoffee';
 
 const ManageCoffee = () => {
     const dispatch = useDispatch();
-    const coffees = useSelector(state => state.coffee.usersCoffees);
+    const {usersCoffees} = useSelector(state => state.userCoffee);
     const user = useSelector(state => state.session.user);
-    // const [usersCoffees, setUsersCoffees] = useState([]);
 
     useEffect(() => {
         const innerFunct = async () => {
-            await dispatch(coffeeActions.getUserCoffeesThunk())
+            await dispatch(userCoffeeActions.getUserCoffeesThunk())
         }
         innerFunct()
     }, [dispatch])
 
-    // useEffect(() => {
-    //     // console.log('\n\n this is coffees',coffees)
-    //     let arr = [];
-    //     if (coffees) {
-    //         for (let el in coffees) {
-    //             arr.push(coffees[el])
-    //         }
-    //     }
-    //     setUsersCoffees(arr)
-    //     // console.log(usersCoffees)
-    // }, [coffees, user])
-
     if (!user) return
-    if (!coffees) return
-
+    if (!usersCoffees) return
 
     return (
         <>
             <h1>manage coffee</h1>
-            {coffees.map((coffee) => {
+            {usersCoffees.map((coffee) => {
                 return (
                     <div key={coffee.id} className='manage-coffee-card'>
                         <img style={{ height: '100px' }} src={coffee.coffeeImages[0].url} />

@@ -18,4 +18,14 @@ export const getUserCoffeesThunk = () => async dispatch => {
         return errors;
     }
 }
-export default function userCoffeeReducer(){}
+
+const initialState = {};
+
+export default function userCoffeeReducer(state = initialState, action){
+    switch(action.type){
+        case GET_CURRENT_USER_COFFEES:
+            return {...state, ...action.payload}
+        default:
+            return state;
+    }
+}

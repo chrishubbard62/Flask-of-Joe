@@ -99,8 +99,7 @@ export default function coffeeReducer(state = initialState, action) {
         }
         //? Chris /////////////////////////////////////////////////////////////////////////////////////
         //===================Lalos reducer code========================
-        case GET_CURRENT_USER_COFFEES:
-            return {...state, ...action.payload}
+        
         //===================Lalos reducer code========================
 
         //!--------------------------Luna---------------------------------

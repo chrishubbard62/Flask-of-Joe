@@ -9,6 +9,7 @@ import sessionReducer from "./session";
 import coffeeReducer from './coffee'
 import reviewReducer from "./review";
 import favoritesReducer from "./favorites";
+import userCoffeeReducer from "./usersCoffee";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   //!----------Luna-----------
   review: reviewReducer,
   favorite: favoritesReducer,
+  userCoffee: userCoffeeReducer,
 });
 
 let enhancer;
