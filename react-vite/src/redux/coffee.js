@@ -51,7 +51,7 @@ export const createCoffeeThunk = (coffee) => async (dispatch) => {
 
 
 export const createImage = (post) => async (dispatch) => {
-    
+
     const response = await fetch(`/api/images`, {
         method: "POST",
         //   headers: {

@@ -37,7 +37,6 @@ function CoffeeFormPage() {
   }, [name, price, description, roast, region, image])
 
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -57,6 +56,7 @@ function CoffeeFormPage() {
     await dispatch(createImage(formData))
     navigate(`/coffees/${newCoffee.id}`)
   }
+  
 
   return (
     <div>
