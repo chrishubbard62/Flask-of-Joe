@@ -1,3 +1,6 @@
+import { getCart } from './cart';
+
+
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
@@ -17,7 +20,7 @@ export const thunkAuthenticate = () => async (dispatch) => {
 		if (data.errors) {
 			return;
 		}
-
+    delete data.currentCart;
 		dispatch(setUser(data));
 	}
 };
@@ -31,6 +34,8 @@ export const thunkLogin = (credentials) => async dispatch => {
 
   if(response.ok) {
     const data = await response.json();
+    dispatch(getCart(data.currentCart[0]));
+    delete data.currentCart
     dispatch(setUser(data));
   } else if (response.status < 500) {
     const errorMessages = await response.json();

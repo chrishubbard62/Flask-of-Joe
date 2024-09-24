@@ -34,5 +34,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'currentCart': [cart.to_dict() for cart in self.carts if cart.pending]
         }

@@ -1,7 +1,7 @@
 //!Get pending cart for current user
 const GET_CART = 'cart/get';
 
-const getCart = (payload) => {
+export const getCart = (payload) => {
   return {
     type: GET_CART,
     payload
@@ -23,6 +23,7 @@ export const getCartThunk = () => async(dispatch) => {
 
 
 // //!Add a new cart item to user's cart
+//!Not Done yet
 const ADD_CARTITEM = 'cart/addItem';
 
 const addCartItem = (payload) => {
@@ -50,8 +51,7 @@ export const addCartItemThunk = (cartItem) => async(dispatch) => {
 
 
 const initialState = {
-  currentCartId: null,
-  cartItems: []
+  id: null
 };
 
 export default function cartReducer(state=initialState, action) {
@@ -59,25 +59,25 @@ export default function cartReducer(state=initialState, action) {
 
     case GET_CART: {
       const newState = {...state};
-      console.log('newState: ', newState)
-      const cart = action.payload;
-      newState.currentCartId = cart.id;
-      console.log(cart.cartItems)
-
-      newState.cartItems = [
-        ...state.cartItems,
-        ...cart.cartItems
-      ]
+      // console.log('newState: ', newState)
+      // console.log('payload', action.payload)
+      // console.log('action.payload.id :', action.payload.id)
+      newState['id'] = action.payload.id;
+      const cartItems = action.payload.cartItems;
+      cartItems.forEach((cartItem) => {
+        newState[cartItem.coffeeId] = cartItem.quantity
+      })
 
       return newState;
     }
 
+    //!Not Done yet
     case ADD_CARTITEM: {
       const newState = {...state};
       const cartItem = action.payload;
       // console.log(cartItem)
-      console.log(state.cartItems)
-      newState.cartItems = {
+      console.log(cartItem)
+      newState[cartItem.cartId] = {
         // ...state.cartItems,
         ...cartItem
       }
