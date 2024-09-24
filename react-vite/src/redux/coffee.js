@@ -87,7 +87,7 @@ const getCoffee = (payload) => {
     }
 };
 
-export const getCoffeeThunk = (coffeeId) => async(dispatch) => {
+export const getCoffeeThunk = (coffeeId) => async (dispatch) => {
     const res = await fetch(`/api/coffees/${coffeeId}`);
     if (res.ok) {
         const coffee = await res.json();
@@ -124,19 +124,19 @@ export default function coffeeReducer(state = initialState, action) {
             return { ...state, favorites: [...action.payload] }
         //===================Lalos reducer code========================
 
- //!--------------------------Luna---------------------------------
+        //!--------------------------Luna---------------------------------
         case GET_COFFEE: {
-            const newState = {...state};
+            const newState = { ...state };
             const coffee = action.payload;
             if (state[coffee.id]) {
-                newState[coffee.id] = {...state[coffee.id], ...coffee};
+                newState[coffee.id] = { ...state[coffee.id], ...coffee };
             } else {
                 newState[coffee.id] = coffee;
             }
 
             return newState;
         }
-//!--------------------------Luna---------------------------------
+        //!--------------------------Luna---------------------------------
         default:
             return state
     }
