@@ -34,8 +34,8 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
 
   // console.log(isDisabledReview)
   return (
-    <div className="review-list">
-      <div className="review-sum">
+    <div className="review-list-whole">
+      <div className="review-list-summary">
         <p>{reviews.length} Reviews</p>
         <p>🌟🌟🌟🌟🌟 {calculateAvgRating(reviews) }</p>
       </div>

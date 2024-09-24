@@ -33,33 +33,41 @@ function CoffeeDetailsPage() {
 
 
   return (
-    <div>
-      <div>
-        {
-          coffeeImages?.map(({id, url}) => {
-            return (<img
-              key={id}
-              src={`${url}`}
-              alt='coffee image'
-              style={{"width": "30rem"}}
-            />)
-          })
-        }
-      </div>
+    <div className="coffee-detail-page-whole">
 
-      <div>
-        <p>Name: {name}</p>
-        <p>$ {price}</p>
-        <p>Region: {region}</p>
-        <p>Roast: {roast}</p>
-        <button>Add to Cart</button>
-      </div>
+      <div className="coffee-detail-page-upper">
 
-      <div>
-        <p>Owner: {owner.username}</p>
-        <p>Description: {description}</p>
-      </div>
+        <div className="coffee-detail-page-imgs">
+          {
+            coffeeImages?.map(({ id, url }) => {
+              return (<img
+                key={id}
+                src={`${url}`}
+                alt='coffee image'
+                className="coffee-detail-page-preview-img"
+              // style={{"width": "30rem"}}
+              />)
+            })
+          }
+        </div>
 
+        <div className="coffee-detail-page-right">
+          <div className="coffee-detail-page-general-info">
+            <p id="coffee-detail-page-product-name">Name: {name}</p>
+            <p>$ {price}</p>
+            <p>Region: {region}</p>
+            <p>Roast: {roast}</p>
+            <button>Add to Cart</button>
+          </div>
+
+          <div className="coffee-detail-page-owner-desc">
+            <p>Owner: {owner.username}</p>
+            <p>Description: {description}</p>
+          </div>
+        </div>
+
+      </div>
+      
       <ReviewList 
       reviews={reviews} 
       coffee={coffee}

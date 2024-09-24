@@ -1,0 +1,35 @@
+
+.coffee-detail-page-whole {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 20px;
+  margin-left: 3%;
+  margin-right: 3%;
+  row-gap: 10px;
+}
+
+.coffee-detail-page-upper {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  column-gap: 20px;
+}
+
+.coffee-detail-page-imgs {
+  width: 100%;
+}
+
+.coffee-detail-page-preview-img {
+  width: 100%;
+  max-width: 500px;
+}
+
+.coffee-detail-page-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#coffee-detail-page-product-name {
+  margin-top: 0;
+}
