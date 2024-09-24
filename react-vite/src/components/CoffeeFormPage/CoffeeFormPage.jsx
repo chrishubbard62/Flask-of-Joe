@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createCoffeeThunk } from "../../redux/coffee";
 import { createImage } from "../../redux/coffee";
 
