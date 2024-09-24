@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createCoffeeThunk } from "../../redux/coffee";
 import { createImage } from "../../redux/coffee";
+import './CoffeeForm.css'
 
 const ROASTS = ['Light', 'Medium', 'Dark', 'Espresso']
 
@@ -69,6 +70,7 @@ function CoffeeFormPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            {submitted && <p className="errors">{valErrors.name}</p>}
         </div>
         <div>
           <p> Give a short description of your coffee
@@ -82,6 +84,7 @@ function CoffeeFormPage() {
               value={description}
               onChange={(e) => SetDescription(e.target.value)}
               />
+              {submitted && <p className="errors">{valErrors.description}</p>}
         </div>
         <div>
           <p>Select a roast for the coffee</p>
@@ -95,6 +98,7 @@ function CoffeeFormPage() {
               <option value="Dark">Dark</option>
               <option value="Espresso">Espresso</option>
           </select>
+          {submitted && <p className="errors">{valErrors.roast}</p>}
         </div>
         <div>
           <p>What region was the coffee grown in?</p>
@@ -105,6 +109,7 @@ function CoffeeFormPage() {
             value={region}
             onChange={(e) => setRegion(e.target.value)}
             />
+            {submitted && <p className="errors">{valErrors.region}</p>}
         </div>
         <div>
           <p>Enter a price for your coffee</p>
@@ -113,6 +118,7 @@ function CoffeeFormPage() {
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}/>
+            {submitted && <p className="errors">{valErrors.price}</p>}
         </div>
         <div>
           <input
@@ -121,6 +127,7 @@ function CoffeeFormPage() {
             onChange={(e) => setImage(e.target.files[0])}
           />
           {image && <img src={URL.createObjectURL(image)} alt="preview" style={{width: '5rem'}}/>}
+          {submitted && <p className="errors">{valErrors.image}</p>}
         </div>
       </form>
       <button onClick={handleSubmit}>Create Coffee</button>
