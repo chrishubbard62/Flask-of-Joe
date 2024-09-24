@@ -2,6 +2,7 @@
 const ADD_IMAGE = 'coffee/addImage'
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 const GET_ALL_COFFEES = 'coffees/getAllCoffees'
+const CREATE_COFFEE = 'coffees/createCoffee'
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 
 const addPost = (payload) => {
@@ -18,6 +19,12 @@ const getCoffees = (payload) => {
         payload
     }
 }
+const createCoffee = (payload) => {
+    return {
+        type: CREATE_COFFEE,
+        payload
+    }
+}
 export const getCoffeesThunk = () => async (dispatch) => {
     const res = await fetch('/api/coffees');
     if (res.ok) {
@@ -26,10 +33,25 @@ export const getCoffeesThunk = () => async (dispatch) => {
         return data;
     }
 }
+
+export const createCoffeeThunk = (coffee) => async (dispatch) => {
+    const res = await fetch('/api/coffees' , {
+        method: 'POST',
+        body: JSON.stringify(coffee),
+        headers: {'Content-Type': "application/json"}
+    })
+    if(res.ok) {
+        const newCoffee = await res.json()
+        dispatch(createCoffee(newCoffee))
+        return newCoffee;
+    }
+}
+
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 
 
 export const createImage = (post) => async (dispatch) => {
+
     const response = await fetch(`/api/images`, {
         method: "POST",
         //   headers: {
@@ -96,6 +118,11 @@ export default function coffeeReducer(state = initialState, action) {
                     newState[coffee.id] = coffee
                 }
             })
+            return newState
+        }
+        case CREATE_COFFEE: {
+            const newState = {...state}
+            newState[action.payload.id] = action.payload
             return newState
         }
         //? Chris /////////////////////////////////////////////////////////////////////////////////////

@@ -22,11 +22,18 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignupFormPage />,
+
+      },
+//? ///////////////////////////////////////////////////// chris //////////////////////
+      {
+        path: "coffees/new",
+        element: <CoffeeFormPage new={true}/>
       },
       {
-        path: "form",
-        element: <CoffeeFormPage />
+        path: 'coffees/:id/edit',
+        element: <CoffeeFormPage new={false}/>
       },
+//? ///////////////////////////////////////////////////// chris ///////////////////////
 //!----------------------Luna---------------------------
       {
         path: "coffees",

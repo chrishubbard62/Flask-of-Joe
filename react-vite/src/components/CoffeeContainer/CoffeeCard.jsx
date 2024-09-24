@@ -5,7 +5,7 @@ import { FaRegStar } from "react-icons/fa";
 function CoffeeCard({coffee}) {
 
   return (
-    <Link to={`/${coffee.id}`}>
+    <Link to={`/coffees/${coffee.id}`}>
       <h2>{coffee.name}</h2>
       <p>${coffee.price}</p>
       {<p>{coffee.reviews.length < 1 ? 'New' : (coffee.reviews.reduce((sum, coffee) => sum + coffee.stars, 0) / coffee.reviews.length).toFixed(1)}<FaRegStar /> </p>}

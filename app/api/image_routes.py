@@ -15,11 +15,12 @@ def upload_image():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-
+        print(form.data)
         image = form.data["image"]
+        coffee_id = form.data['coffee_id']
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-        print(upload)
+
 
         if "url" not in upload:
         # if the dictionary doesn't have a url key
@@ -30,12 +31,12 @@ def upload_image():
 
 
         url = upload["url"]
-        new_image = CoffeeImage(url= url, coffee_id=1)
+        new_image = CoffeeImage(url= url, coffee_id=coffee_id)
         # im thinking image has to be url instead
         db.session.add(new_image)
         db.session.commit()
         #may fix later
-        return {'url': url}
+        return {'url': url, 'coffee_id': coffee_id}
 
     if form.errors:
         print('\n this is errors \n',form.errors)
