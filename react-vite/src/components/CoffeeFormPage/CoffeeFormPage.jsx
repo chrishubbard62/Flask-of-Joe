@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { redirect, useNavigate } from "react-router-dom";
+import { createCoffeeThunk } from "../../redux/coffee";
+import { createImage } from "../../redux/coffee";
 
 const ROASTS = ['Light', 'Medium', 'Dark', 'Espresso']
 
 function CoffeeFormPage() {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [name, setName] = useState('')
@@ -13,9 +17,10 @@ function CoffeeFormPage() {
   const [region, setRegion] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [valErrors, setValErrors] = useState({})
+  const [image, setImage] = useState(null)
+
 
   useEffect(() => {
-
     const errors = {}
     if(name.length < 1) errors.name = 'Please provide a name for your coffee'
     if(name.length > 50) errors.name = 'Coffee names are limited to 50 characters'
@@ -25,18 +30,31 @@ function CoffeeFormPage() {
     if(!ROASTS.includes(roast)) errors.roast = 'Please select a valid roast'
     if(region.length < 1) errors.region = 'Please provide the a region for your coffee'
     if(region.length > 50) errors.region = 'Regions are limited to 50 characters'
+    if(!image) errors.image = 'Please select an image for your coffee!'
     setValErrors(errors)
 
-  }, [name, price, description, roast, region])
+  }, [name, price, description, roast, region, image])
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
-    if(Object.values(valErrors).length) {
-      console.log(submitted)
-    } else {
-      return navigate('/')
+    if(Object.values(valErrors).length)  return;
+    const coffee = {
+      name,
+      description,
+      roast,
+      region,
+      price
     }
+    const newCoffee = await dispatch(createCoffeeThunk(coffee))
+    const formData = new FormData()
+    console.log(image)
+    formData.append("image", image)
+    formData.append("coffee_id", newCoffee.id)
+    await dispatch(createImage(formData))
+    navigate(`/coffees/${newCoffee.id}`)
   }
 
   return (
@@ -95,6 +113,14 @@ function CoffeeFormPage() {
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}/>
+        </div>
+        <div>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+          {image && <img src={URL.createObjectURL(image)} alt="preview" style={{width: '5rem'}}/>}
         </div>
       </form>
       <button onClick={handleSubmit}>Create Coffee</button>
