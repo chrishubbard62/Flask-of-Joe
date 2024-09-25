@@ -9,6 +9,8 @@ import { addCartItemThunk, getCartThunk } from "../../redux/cart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularFaHeart } from '@fortawesome/free-regular-svg-icons';
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 function CoffeeDetailsPage() {
   const { id: coffeeId } = useParams();
@@ -18,6 +20,10 @@ function CoffeeDetailsPage() {
   const reviews = Object.values(reviewsObj);
   const userCart = useSelector((state) => state.cart);
   const userCartId = userCart.currentCartId;
+
+  //!-------------------Luna-------------------
+  const [isOpen, setIsOpen] = useState(false);
+  //!-------------------Luna-------------------
 
   //Favourite Functionality
   const [isFav, setIsFav] = useState(false);
@@ -42,7 +48,7 @@ function CoffeeDetailsPage() {
   // console.log(coffeeImages[0].id, coffeeImages[0].url, coffeeImages)
 
   const handleFavButtonClick = (id) => {
-    console.log(id);
+    // console.log(id);
     setIsFav(prevFav => !prevFav);
   }
 
@@ -80,23 +86,25 @@ function CoffeeDetailsPage() {
             <h2>$ {price}</h2>
             <h3>Region: {region}</h3>
             <h3>Roast: {roast}</h3>
-
-            <div className="coffee-detail-add-to-cart-button">
-              <div className="coffee-detail-add-to-cart-button-wrapper">
-                <div className="text">Add to Cart</div>
-                <span className="icon">
-                  <svg viewBox="0 0 16 16" className="bi bi-cart2" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path>
-                  </svg>
-                </span>
-              </div>
-            </div>
-
           </div>
 
+          <button>Add to Cart</button>
+
           <div className="coffee-detail-page-owner-desc">
-            <h3>Owner: {owner.username}</h3>
-            <h3>Description: {description}</h3>
+            <div className="coffee-detail-page-toggle-block" onClick={() => setIsOpen(!isOpen)}>
+              <h2>More Info</h2>
+              <span className="coffee-detail-toggle-icons">{isOpen ? <FontAwesomeIcon icon={faCaretUp} /> 
+                      : <FontAwesomeIcon icon={faCaretDown} />}</span>
+            </div>
+
+            {isOpen && (
+              <div>
+                <h3>Owned By: {owner.username}</h3>
+                <h3>About this coffee:</h3>
+                <p>{description}</p>
+              </div>
+            )}
+          
           </div>
         </div>
 
