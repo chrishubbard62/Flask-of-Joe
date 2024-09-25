@@ -28,11 +28,11 @@ export const router = createBrowserRouter([
 //? ///////////////////////////////////////////////////// chris //////////////////////
       {
         path: "coffees/new",
-        element: <CoffeeFormPage new={true}/>
+        element: <CoffeeFormPage newCoffee={true}/>
       },
       {
         path: 'coffees/:id/edit',
-        element: <CoffeeFormPage new={false}/>
+        element: <CoffeeFormPage newCoffee={false}/>
       },
 //? ///////////////////////////////////////////////////// chris ///////////////////////
 //!----------------------Luna---------------------------
