@@ -5,7 +5,7 @@ from .coffee import coffee1, coffee2, coffee3, coffee4, coffee5
 
 coffee_image1 = CoffeeImage(
                  coffee=coffee1,
-                 url= 'http://byte-ninja-coffee.s3.amazonaws.com/0920650f72ac46eba992b09051d152ce.jpg'
+                 url= 'http://byte-ninja-coffee.s3.amazonaws.com/93d3be0ded094443a8d0208a2b7b150a.jpg'
 )
 coffee_image2 = CoffeeImage(
                  coffee=coffee2,

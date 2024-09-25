@@ -4,7 +4,7 @@ import { FaRegStar } from "react-icons/fa";
 
 function CoffeeCard({coffee}) {
   if(!coffee) return <h2>Loading</h2>
-
+  
   return (
     <Link to={`/coffees/${coffee.id}`}>
       <h2>{coffee.name}</h2>

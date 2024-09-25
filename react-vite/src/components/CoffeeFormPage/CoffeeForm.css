@@ -1,3 +1,41 @@
 .errors {
   color: red
 }
+
+.form-outer {
+  display: flex;
+  justify-content: center;
+
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+
+  margin-top: 25px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-div {
+
+  margin: 0;
+}
+
+.form-beans {
+  color: #1b0000
+}
+
+.form-div textarea {
+  width: 100%;
+  height: 5rem;
+}
+
+.form-div p {
+  height: 19.59px;
+}

@@ -147,6 +147,8 @@ export default function coffeeReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_IMAGE:
             return { ...state, ImageUrls: action.payload }
+        case UPDATE_IMAGE:
+            return { ...state, ImageUrls: action.payload }
         //? Chris /////////////////////////////////////////////////////////////////////////////////////
         case GET_ALL_COFFEES: {
             const newState = { ...state }
