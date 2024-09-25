@@ -3,6 +3,8 @@ const ADD_IMAGE = 'coffee/addImage'
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 const GET_ALL_COFFEES = 'coffees/getAllCoffees'
 const CREATE_COFFEE = 'coffees/createCoffee'
+const UPDATE_COFFEE = 'coffees/updateCoffee'
+const UPDATE_IMAGE = 'coffee/updateImage'
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 
 const addPost = (payload) => {
@@ -11,7 +13,6 @@ const addPost = (payload) => {
         payload
     }
 }
-
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 const getCoffees = (payload) => {
     return {
@@ -25,6 +26,36 @@ const createCoffee = (payload) => {
         payload
     }
 }
+
+const updateCoffee = (payload) => {
+    return {
+        type: UPDATE_COFFEE,
+        payload
+    }
+}
+
+export const updateImageThunk =  (imageId, post) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}`, {
+        method: 'DELETE'
+    })
+    const response = await fetch(`/api/images`, {
+        method: "POST",
+        body: post
+    });
+    if(res.ok) {
+        if (response.ok) {
+            const { resPost } = await response.json();
+            dispatch(addPost(resPost));
+        } else {
+            const error = await response.json()
+            console.log(error)
+            console.log("There was an error making your post!")
+        }
+    }
+
+
+}
+
 export const getCoffeesThunk = () => async (dispatch) => {
     const res = await fetch('/api/coffees');
     if (res.ok) {
@@ -38,12 +69,25 @@ export const createCoffeeThunk = (coffee) => async (dispatch) => {
     const res = await fetch('/api/coffees' , {
         method: 'POST',
         body: JSON.stringify(coffee),
-        headers: {'Content-Type': "application/json"}
+        headers: {'Content-Type': 'application/json'}
     })
     if(res.ok) {
         const newCoffee = await res.json()
         dispatch(createCoffee(newCoffee))
         return newCoffee;
+    }
+}
+
+export const updateCoffeeThunk = (coffeeId, coffee) => async (dispatch) => {
+    const res = await fetch(`/api/coffees/${coffeeId}`, {
+        method: 'PUT',
+        body: JSON.stringify(coffee),
+        headers: {'Content-Type': 'application/json'}
+    })
+    if(res.ok) {
+        const updatedCoffee = await res.json()
+        dispatch(updateCoffee(updatedCoffee))
+        return updatedCoffee
     }
 }
 
@@ -54,10 +98,6 @@ export const createImage = (post) => async (dispatch) => {
 
     const response = await fetch(`/api/images`, {
         method: "POST",
-        //   headers: {
-        //     'Accept': 'application/json',
-        //     "Content-Type": "application/json",
-        //   },
         body: post
     });
 
@@ -107,6 +147,8 @@ export default function coffeeReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_IMAGE:
             return { ...state, ImageUrls: action.payload }
+        case UPDATE_IMAGE:
+            return { ...state, ImageUrls: action.payload }
         //? Chris /////////////////////////////////////////////////////////////////////////////////////
         case GET_ALL_COFFEES: {
             const newState = { ...state }
@@ -124,9 +166,14 @@ export default function coffeeReducer(state = initialState, action) {
             newState[action.payload.id] = action.payload
             return newState
         }
+        case UPDATE_COFFEE: {
+            const newState = {...state}
+            newState[action.payload.id] = {...newState[action.payload.id], ...action.payload}
+            return newState;
+        }
         //? Chris /////////////////////////////////////////////////////////////////////////////////////
         //===================Lalos reducer code========================
-        
+
         //===================Lalos reducer code========================
 
         //!--------------------------Luna---------------------------------

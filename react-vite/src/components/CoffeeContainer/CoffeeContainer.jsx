@@ -14,7 +14,7 @@ function CoffeeContainer() {
     dispatch(getCoffeesThunk())
   }, [dispatch])
 
-  if(!data) return <h2>Loading</h2>
+  if(!data || !coffees) return <h2>Loading</h2>
 
   return (
     <div>
@@ -22,8 +22,8 @@ function CoffeeContainer() {
         <h1>Banner Placeholder</h1>
       </div>
       <div>
-        {coffees.map((coffee) => {
-          return <CoffeeCard key={coffee.id} coffee={coffee}/>
+        {coffees?.map((coffee) => {
+          return <CoffeeCard key={coffee?.id} coffee={coffee}/>
         })}
       </div>
     </div>
