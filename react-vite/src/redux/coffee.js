@@ -3,6 +3,7 @@ const ADD_IMAGE = 'coffee/addImage'
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 const GET_ALL_COFFEES = 'coffees/getAllCoffees'
 const CREATE_COFFEE = 'coffees/createCoffee'
+const UPDATE_COFFEE = 'coffees/updateCoffee'
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 
 const addPost = (payload) => {
@@ -25,6 +26,14 @@ const createCoffee = (payload) => {
         payload
     }
 }
+
+const updateCoffee = (payload) => {
+    return {
+        type: UPDATE_COFFEE,
+        payload
+    }
+}
+
 export const getCoffeesThunk = () => async (dispatch) => {
     const res = await fetch('/api/coffees');
     if (res.ok) {
@@ -38,12 +47,25 @@ export const createCoffeeThunk = (coffee) => async (dispatch) => {
     const res = await fetch('/api/coffees' , {
         method: 'POST',
         body: JSON.stringify(coffee),
-        headers: {'Content-Type': "application/json"}
+        headers: {'Content-Type': 'application/json'}
     })
     if(res.ok) {
         const newCoffee = await res.json()
         dispatch(createCoffee(newCoffee))
         return newCoffee;
+    }
+}
+
+export const updateCoffeeThunk = (coffeeId, coffee) => async (dispatch) => {
+    const res = await fetch(`/api/coffees/${coffeeId}`, {
+        method: 'PUT',
+        body: JSON.stringify(coffee),
+        headers: {'Content-Type': 'application/json'}
+    })
+    if(res.ok) {
+        const updatedCoffee = await res.json()
+        dispatch(updateCoffee(updatedCoffee))
+        return updatedCoffee
     }
 }
 
@@ -124,9 +146,14 @@ export default function coffeeReducer(state = initialState, action) {
             newState[action.payload.id] = action.payload
             return newState
         }
+        case UPDATE_COFFEE: {
+            const newState = {...state}
+            newState[action.payload.id] = {...newState[action.payload.id], ...action.payload}
+            return newState;
+        }
         //? Chris /////////////////////////////////////////////////////////////////////////////////////
         //===================Lalos reducer code========================
-        
+
         //===================Lalos reducer code========================
 
         //!--------------------------Luna---------------------------------

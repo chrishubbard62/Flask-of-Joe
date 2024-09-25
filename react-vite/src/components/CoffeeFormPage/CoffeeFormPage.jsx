@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { createCoffeeThunk } from "../../redux/coffee";
+import { createCoffeeThunk, getCoffeeThunk, updateCoffeeThunk } from "../../redux/coffee";
 import { createImage } from "../../redux/coffee";
-import { getCoffeeThunk } from "../../redux/coffee";
 import './CoffeeForm.css'
 
 const ROASTS = ['Light', 'Medium', 'Dark', 'Espresso']
@@ -13,6 +12,7 @@ function CoffeeFormPage({newCoffee}) {
   const navigate = useNavigate()
   const {id} = useParams()
   const coffee = useSelector(state => state.coffee[id])
+  const user = useSelector(state => state.session.user)
 
 
   const [name, setName] = useState('')
@@ -52,11 +52,27 @@ function CoffeeFormPage({newCoffee}) {
     if(!ROASTS.includes(roast)) errors.roast = 'Please select a valid roast'
     if(region.length < 1) errors.region = 'Please provide the a region for your coffee'
     if(region.length > 50) errors.region = 'Regions are limited to 50 characters'
-    if(!image && !newCoffee) errors.image = 'Please select an image for your coffee!'
+    if(!image && newCoffee) errors.image = 'Please select an image for your coffee!'
     setValErrors(errors)
 
   }, [name, price, description, roast, region, image, newCoffee])
 
+  const handleUpdate = async (e) => {
+    e.preventDefault()
+    setSubmitted(true)
+
+    if(Object.values(valErrors).length)  return;
+    const coffee = {
+      name,
+      description,
+      roast,
+      region,
+      price
+    }
+   
+    await dispatch(updateCoffeeThunk(id, coffee))
+    navigate(`/coffees/${id}`)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,6 +85,7 @@ function CoffeeFormPage({newCoffee}) {
       region,
       price
     }
+
     const newCoffee = await dispatch(createCoffeeThunk(coffee))
     const formData = new FormData()
 
@@ -76,6 +93,10 @@ function CoffeeFormPage({newCoffee}) {
     formData.append("coffee_id", newCoffee.id)
     await dispatch(createImage(formData))
     navigate(`/coffees/${newCoffee.id}`)
+  }
+
+  if(user?.id !== coffee?.ownerId) {
+    return <h2>Forbidden</h2>
   }
 
 
@@ -142,6 +163,7 @@ function CoffeeFormPage({newCoffee}) {
             {submitted && <p className="errors">{valErrors.price}</p>}
         </div>
         <div>
+          <p>Choose an image for your coffee</p>
           <input
             type="file"
             accept="image/*"
@@ -151,7 +173,7 @@ function CoffeeFormPage({newCoffee}) {
           {submitted && newCoffee && <p className="errors">{valErrors.image}</p>}
         </div>
       </form>
-      <button onClick={handleSubmit}>Create Coffee</button>
+      {newCoffee ? <button onClick={handleSubmit}>Create Coffee</button> : <button onClick={handleUpdate}>Update Coffee</button>}
     </div>
   )
 }
