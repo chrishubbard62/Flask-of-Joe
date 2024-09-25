@@ -41,7 +41,9 @@ def remove_fav(fav_id):
     '''
     Deletes favorite for current user if user owns favorite and if favorite exists
     '''
-    curr_fav = Favorite.query.filter(Favorite.id == fav_id).first()
+    # curr_fav = Favorite.query.filter(Favorite.id == fav_id).first()
+    curr_fav = Favorite.query.filter(Favorite.coffee_id == fav_id).filter(Favorite.user_id == current_user.id).first()
+    this_id = curr_fav.id
 
     if not curr_fav:
         return {'errors': 'current favorite cannot be found'}, 404
@@ -50,4 +52,4 @@ def remove_fav(fav_id):
 
     db.session.delete(curr_fav)
     db.session.commit()
-    return {'message': 'Successfully deleted!'}, 200
+    return {'message': 'Successfully deleted!', 'deletedFavId': this_id}, 200

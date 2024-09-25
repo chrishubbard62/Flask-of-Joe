@@ -26,8 +26,8 @@ function Navigation() {
 
       <div className="nav-bar-right-side">
         <div className="no-bullets-li">
-          <li onClick={() => navigate('/form')}>
-            <NavLink to="/form" className='no-text-style'>New </NavLink>
+          <li onClick={() => navigate('/coffees/new')}>
+            <NavLink to="/coffees/new" className='no-text-style'>New </NavLink>
             <GiCoffeeBeans />
           </li>
           <li onClick={() => navigate('/users-coffee')}>
