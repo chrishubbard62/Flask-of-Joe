@@ -9,6 +9,9 @@ import { addCartItemThunk, getCartThunk } from "../../redux/cart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularFaHeart } from '@fortawesome/free-regular-svg-icons';
+//-----------------------------this is lalos addendum-----------------------------
+import * as favoritesActions from '../../redux/favorites';
+//-----------------------------this is lalos addendum-----------------------------
 
 function CoffeeDetailsPage() {
   const { id: coffeeId } = useParams();
@@ -18,6 +21,9 @@ function CoffeeDetailsPage() {
   const reviews = Object.values(reviewsObj);
   const userCart = useSelector((state) => state.cart);
   const userCartId = userCart.currentCartId;
+  //---------------------lalo------------------
+  let fav = useSelector(state=>state.favorite.favorites)
+  //---------------------lalo------------------
 
   //Favourite Functionality
   const [isFav, setIsFav] = useState(false);
@@ -29,12 +35,26 @@ function CoffeeDetailsPage() {
   useEffect(() => {
     dispatch(getCoffeeThunk(coffeeId))
       .then(() => setIsLoaded(true))
-    
+
     dispatch(getReviewsThunk(coffeeId));
     dispatch(getCartThunk());
+    //------------lalo-----------------
+    dispatch(favoritesActions.getUserFavoritesThunk())
+    //------------lalo-----------------
   }, [dispatch, coffeeId])
+  //----------lalo----------------
+  useEffect(()=>{
+    if(!isFav && fav){
+      // let thisfav = fav.find((el)=>el.coffeeId === +coffeeId)
+      // if(thisfav && thisfav.coffeeId === +coffeeId){
+      //   setIsFav(true)
+      // }
+      if(fav.find((el)=>el.coffeeId === +coffeeId))setIsFav(true)
+    }
+  },[coffee,fav])
+  //----------lalo----------------
 
-  if (!isLoaded) {
+  if (!isLoaded ) {
     return <h2>Loading...</h2>
   }
 
@@ -42,8 +62,16 @@ function CoffeeDetailsPage() {
   // console.log(coffeeImages[0].id, coffeeImages[0].url, coffeeImages)
 
   const handleFavButtonClick = (id) => {
-    console.log(id);
-    setIsFav(prevFav => !prevFav);
+    //------------------------lalo-------------------------
+    if (!isFav){
+      dispatch(favoritesActions.addFavoriteThunk(id))
+    } else {
+      dispatch(favoritesActions.removeFavoriteThunk(id))
+    }
+    setIsFav(prevFav=> !prevFav)
+    //------------------------lalo-------------------------
+    // console.log(id);
+    // setIsFav(prevFav => !prevFav);
   }
 
   return (
@@ -63,7 +91,7 @@ function CoffeeDetailsPage() {
                   />
                   <button
                     className="coffee-detail-page-imgs-fav-button"
-                    onClick={() => handleFavButtonClick(id, isFav)}
+                    onClick={() => handleFavButtonClick(coffeeId)}
                   >{isFav ? <FontAwesomeIcon icon={solidFaHeart} />
                       : <FontAwesomeIcon icon={regularFaHeart} />}
                   </button>
@@ -101,9 +129,9 @@ function CoffeeDetailsPage() {
         </div>
 
       </div>
-      
-      <ReviewList 
-      reviews={reviews} 
+
+      <ReviewList
+      reviews={reviews}
       coffee={coffee}
       />
     </div>

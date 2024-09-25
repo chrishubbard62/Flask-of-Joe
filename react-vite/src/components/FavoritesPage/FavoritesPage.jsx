@@ -3,17 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as favoritesActions from '../../redux/favorites';
 import './FavoritesPage.css';
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const FavoritesPage = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     // const coffee = useSelector(state => state.coffee);
-    const user = useSelector(state=> state.session.user)
+    const user = useSelector(state => state.session.user)
     const favs = useSelector(state => state.favorite.favorites)
 
 
     useEffect(() => {
         dispatch(favoritesActions.getUserFavoritesThunk())
-    }, [dispatch,user])
+    }, [dispatch, user])
 
     // this user favs array might go into the card component
 
@@ -28,13 +30,13 @@ const FavoritesPage = () => {
             </div>
             <div className='search-bar-area'>
                 <input className='search-input' type='search' placeholder='Search your favorites' />
-                <FaSearch className='favorites-search-icon'/>
+                <FaSearch className='favorites-search-icon' />
             </div>
 
             <div className='div-card-container'>
                 {favs && favs.map(fav => {
                     return (
-                        <div key={fav.id} className='coffee-card-favs'>
+                        <div key={fav.id} className='coffee-card-favs' onClick={()=>navigate(`/coffees/${fav.id}`)}>
                             <img style={{ width: '100%', borderRadius: '10px' }} src={fav.coffee.coffeeImages[0].url} alt='image of coffee product' />
                             <div>
                                 <div>{fav.coffee.name}</div>
