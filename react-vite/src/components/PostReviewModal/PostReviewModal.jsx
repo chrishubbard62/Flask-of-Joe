@@ -2,9 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { useEffect, useState } from 'react';
 import { addReviewThunk } from '../../redux/review';
-
-
-
+import './PostReviewModal.css';
 
 export default function PostReviewModal({ coffeeId }) {
   // console.log(coffeeId)
@@ -29,9 +27,12 @@ export default function PostReviewModal({ coffeeId }) {
 
   useEffect(() => {
     let err = {};
-    if (newReview?.length > 200) {
+    if (newReview.length > 200) {
       err.newReview = 'Review needs to be less than 200 characters';
+    } else if (!newReview.length) {
+      err.newReview = 'Please give a review';
     }
+
     if (!stars) {
       err.stars = 'Please rate'
     }
@@ -40,12 +41,12 @@ export default function PostReviewModal({ coffeeId }) {
   }, [newReview, stars])
 
   return (
-    <>
-      <div>
-        <h2>How do you feel this coffee?</h2>
+    <div className='post-review-frame'>
+      <div className='post-review-header'>
+        <h2>How do you feel about this coffee?</h2>
       </div>
 
-      <form>
+      <form className='post-review-form'>
         <textarea
           type="text"
           value={newReview}
@@ -53,8 +54,8 @@ export default function PostReviewModal({ coffeeId }) {
           onChange={(e) => setNewReview(e.target.value)}
           required
         />
-        <div className="star-rating">
-          <div className="stars">
+        <div className="post-review-star-rating">
+          <div className="post-review-stars">
             {[1, 2, 3, 4, 5].map((n) => (
               <span
                 key={n}
@@ -66,11 +67,13 @@ export default function PostReviewModal({ coffeeId }) {
               </span>
             ))}
           </div>
-          <span className="star-label">Stars</span>
+
+          <span className="post-review-star-label">Stars</span>
+
         </div>
 
         <button
-          className='post-review-button'
+          className='post-review-inside-button'
           type='submit'
           disabled={Object.values(errors).length}
           onClick={handleSubmit}
@@ -79,6 +82,6 @@ export default function PostReviewModal({ coffeeId }) {
         </button>
 
       </form>
-    </>
+    </div>
   )
 }
