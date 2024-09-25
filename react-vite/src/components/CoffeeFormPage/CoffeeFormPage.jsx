@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { createCoffeeThunk, getCoffeeThunk, updateCoffeeThunk } from "../../redux/coffee";
+import { createCoffeeThunk, getCoffeeThunk, updateCoffeeThunk, updateImageThunk } from "../../redux/coffee";
 import { createImage } from "../../redux/coffee";
 import './CoffeeForm.css'
 
@@ -11,6 +11,7 @@ function CoffeeFormPage({newCoffee}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {id} = useParams()
+  const allCoffee = useSelector(state => state.coffee)
   const coffee = useSelector(state => state.coffee[id])
   const user = useSelector(state => state.session.user)
 
@@ -69,7 +70,14 @@ function CoffeeFormPage({newCoffee}) {
       region,
       price
     }
-   
+    if(image) {
+      const formData = new FormData()
+      formData.append("image", image)
+      formData.append("coffee_id", id)
+      const imgId = allCoffee[id].coffeeImages[0].id
+      await dispatch(updateImageThunk(imgId, formData))
+    }
+
     await dispatch(updateCoffeeThunk(id, coffee))
     navigate(`/coffees/${id}`)
   }
@@ -85,7 +93,6 @@ function CoffeeFormPage({newCoffee}) {
       region,
       price
     }
-
     const newCoffee = await dispatch(createCoffeeThunk(coffee))
     const formData = new FormData()
 

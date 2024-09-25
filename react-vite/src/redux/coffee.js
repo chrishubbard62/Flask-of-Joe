@@ -4,6 +4,7 @@ const ADD_IMAGE = 'coffee/addImage'
 const GET_ALL_COFFEES = 'coffees/getAllCoffees'
 const CREATE_COFFEE = 'coffees/createCoffee'
 const UPDATE_COFFEE = 'coffees/updateCoffee'
+const UPDATE_IMAGE = 'coffee/updateImage'
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 
 const addPost = (payload) => {
@@ -12,7 +13,6 @@ const addPost = (payload) => {
         payload
     }
 }
-
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 const getCoffees = (payload) => {
     return {
@@ -32,6 +32,28 @@ const updateCoffee = (payload) => {
         type: UPDATE_COFFEE,
         payload
     }
+}
+
+export const updateImageThunk =  (imageId, post) => async(dispatch) => {
+    const res = await fetch(`/api/images/${imageId}`, {
+        method: 'DELETE'
+    })
+    const response = await fetch(`/api/images`, {
+        method: "POST",
+        body: post
+    });
+    if(res.ok) {
+        if (response.ok) {
+            const { resPost } = await response.json();
+            dispatch(addPost(resPost));
+        } else {
+            const error = await response.json()
+            console.log(error)
+            console.log("There was an error making your post!")
+        }
+    }
+
+
 }
 
 export const getCoffeesThunk = () => async (dispatch) => {
@@ -76,10 +98,6 @@ export const createImage = (post) => async (dispatch) => {
 
     const response = await fetch(`/api/images`, {
         method: "POST",
-        //   headers: {
-        //     'Accept': 'application/json',
-        //     "Content-Type": "application/json",
-        //   },
         body: post
     });
 
