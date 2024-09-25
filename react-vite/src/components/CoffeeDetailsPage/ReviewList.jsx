@@ -16,7 +16,7 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
 
   if (!reviews) {
     return (
-      <h2>Loading...</h2>
+      <h2>No Reviews Yet!</h2>
     )
   }
 

@@ -9,6 +9,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 94%;
+  margin-bottom: 50px;
 }
 
 
@@ -80,4 +81,19 @@
 }
 
 
+.make-review-button button {
+  background-color: white;
+  border: 1px, solid, black;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 3px;
+}
 
+.delete-review-button button {
+  background-color: white;
+  border: 1px, solid, black;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}

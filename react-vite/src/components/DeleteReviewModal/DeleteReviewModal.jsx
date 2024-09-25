@@ -13,7 +13,7 @@ export default function DeleteReviewModal({ review }) {
     <>
       <div className='delete-review-modal'>
         <div className='delete-review-header'>
-          <h1>Confirm Delete</h1>
+          <h2>Confirm Delete</h2>
           <p>Are you sure you want to delete this review?</p>
         </div>
 
