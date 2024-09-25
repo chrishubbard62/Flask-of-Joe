@@ -14,9 +14,9 @@ function CoffeeFormPage({newCoffee}) {
   const {id} = useParams()
   const coffee = useSelector(state => state.coffee[id])
 
-  
 
-  const [name, setName] = useState(coffee?.name || '')
+
+  const [name, setName] = useState('')
   const [price, setPrice] = useState(0.00)
   const [description, SetDescription] = useState('')
   const [roast, setRoast] = useState('Select-A-Roast')
@@ -26,8 +26,21 @@ function CoffeeFormPage({newCoffee}) {
   const [image, setImage] = useState(null)
 
   useEffect(() => {
-    dispatch(getCoffeeThunk(id))
+    async function getCoffee() {
+      await dispatch(getCoffeeThunk(id))
+    }
+    getCoffee()
   }, [dispatch, id])
+
+  useEffect(() => {
+    if(coffee) {
+      setName(coffee.name)
+      setPrice(coffee.price)
+      SetDescription(coffee.description)
+      setRoast(coffee.roast)
+      setRegion(coffee.region)
+    }
+  },[coffee])
 
 
   useEffect(() => {
@@ -40,10 +53,10 @@ function CoffeeFormPage({newCoffee}) {
     if(!ROASTS.includes(roast)) errors.roast = 'Please select a valid roast'
     if(region.length < 1) errors.region = 'Please provide the a region for your coffee'
     if(region.length > 50) errors.region = 'Regions are limited to 50 characters'
-    if(!image) errors.image = 'Please select an image for your coffee!'
+    if(!image && !newCoffee) errors.image = 'Please select an image for your coffee!'
     setValErrors(errors)
 
-  }, [name, price, description, roast, region, image])
+  }, [name, price, description, roast, region, image, newCoffee])
 
 
   const handleSubmit = async (e) => {
@@ -136,7 +149,7 @@ function CoffeeFormPage({newCoffee}) {
             onChange={(e) => setImage(e.target.files[0])}
           />
           {image && <img src={URL.createObjectURL(image)} alt="preview" style={{width: '5rem'}}/>}
-          {submitted && <p className="errors">{valErrors.image}</p>}
+          {submitted && newCoffee && <p className="errors">{valErrors.image}</p>}
         </div>
       </form>
       <button onClick={handleSubmit}>Create Coffee</button>
