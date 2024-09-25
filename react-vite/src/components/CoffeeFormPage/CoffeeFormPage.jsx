@@ -50,13 +50,13 @@ function CoffeeFormPage() {
     }
     const newCoffee = await dispatch(createCoffeeThunk(coffee))
     const formData = new FormData()
-    console.log(image)
+    
     formData.append("image", image)
     formData.append("coffee_id", newCoffee.id)
     await dispatch(createImage(formData))
     navigate(`/coffees/${newCoffee.id}`)
   }
-  
+
 
   return (
     <div>
