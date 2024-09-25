@@ -1,0 +1,41 @@
+
+.post-review-header {
+  text-align: center;
+}
+
+.post-review-form {
+  text-align: center;
+}
+
+.post-review-form textarea {
+  width: 80%;
+  height: 100px;
+}
+
+.post-review-stars span {
+  font-size: 30px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  color: #f5c518;
+}
+
+.post-review-star-rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap:10px;
+}
+
+.post-review-star-label {
+  margin-top: 14px;
+}
+
+.post-review-inside-button {
+  margin-top: 20px;
+  background-color: white;
+  border: 1px solid black;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+

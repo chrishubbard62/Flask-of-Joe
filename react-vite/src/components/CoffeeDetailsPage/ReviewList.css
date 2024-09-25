@@ -9,11 +9,14 @@
   flex-direction: column;
   align-items: flex-start;
   width: 94%;
+  margin-bottom: 50px;
 }
+
 
 .review-list-summary {
   text-align: left;
   width: 100%;
+  border-bottom: 1px solid #ccc;
 }
 
 .review-details {
@@ -29,7 +32,7 @@
 .review-details li {
   margin-bottom: 15px;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   width: 100%;
 }
 
@@ -37,4 +40,60 @@
   width: 100%;
 }
 
+.review-details h3 {
+  margin-bottom: 30px;
+}
 
+.review-list-avg-stars {
+  margin-bottom: 35px;
+}
+
+.review-list-avg-stars svg {
+  font-size: 1.5em;
+}
+
+.review-list-name-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:flex-end;
+  gap:5px;
+}
+
+#review-list-username {
+  text-decoration: underline;
+  width: 15%;
+}
+
+.review-list-text {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+#review-list-avg-big {
+  font-size: 4em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.review-list-each-stars {
+  margin-top: 30px;
+}
+
+
+.make-review-button button {
+  background-color: white;
+  border: 1px, solid, black;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.delete-review-button button {
+  background-color: white;
+  border: 1px, solid, black;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
