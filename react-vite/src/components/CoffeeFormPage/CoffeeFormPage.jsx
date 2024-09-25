@@ -15,7 +15,6 @@ function CoffeeFormPage({newCoffee}) {
   const coffee = useSelector(state => state.coffee[id])
 
 
-
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0.00)
   const [description, SetDescription] = useState('')
