@@ -73,7 +73,7 @@
 .coffee-detail-page-toggle-block h2 {
   flex-grow: 1;
   margin-right: 10px;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .coffee-detail-page-toggle-block span {

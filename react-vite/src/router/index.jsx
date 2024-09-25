@@ -26,14 +26,14 @@ export const router = createBrowserRouter([
 
       },
 //? ///////////////////////////////////////////////////// chris //////////////////////
-      {
-        path: "coffees/new",
-        element: <CoffeeFormPage newCoffee={true}/>
-      },
-      {
-        path: 'coffees/:id/edit',
-        element: <CoffeeFormPage newCoffee={false}/>
-      },
+      // {
+      //   path: "coffees/new",
+      //   element: <CoffeeFormPage newCoffee={true}/>
+      // },
+      // {
+      //   path: 'coffees/:id/edit',
+      //   element: <CoffeeFormPage newCoffee={false}/>
+      // },
 //? ///////////////////////////////////////////////////// chris ///////////////////////
 //!----------------------Luna---------------------------
       {
@@ -42,7 +42,15 @@ export const router = createBrowserRouter([
           {
             path: ":id",
             element: <CoffeeDetailsPage />
-          }
+          },
+          {
+            path: "new",
+            element: <CoffeeFormPage newCoffee={true}/>
+          },
+          {
+            path: ':id/edit',
+            element: <CoffeeFormPage newCoffee={false}/>
+          },
         ]
       },
 //!----------------------Luna---------------------------
