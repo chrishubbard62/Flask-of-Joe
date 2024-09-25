@@ -6,6 +6,9 @@ import { getCoffeeThunk } from "../../redux/coffee";
 import { getReviewsThunk } from "../../redux/review";
 import ReviewList from "./ReviewList";
 import { addCartItemThunk, getCartThunk } from "../../redux/cart";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as regularFaHeart } from '@fortawesome/free-regular-svg-icons';
 
 function CoffeeDetailsPage() {
   const { id: coffeeId } = useParams();
@@ -15,6 +18,9 @@ function CoffeeDetailsPage() {
   const reviews = Object.values(reviewsObj);
   const userCart = useSelector((state) => state.cart);
   const userCartId = userCart.currentCartId;
+
+  //Favourite Functionality
+  const [isFav, setIsFav] = useState(false);
 
   // console.log(userCartId)
 
@@ -35,6 +41,10 @@ function CoffeeDetailsPage() {
   const { coffeeImages, description, name, owner, price, region, roast } = coffee;
   // console.log(coffeeImages[0].id, coffeeImages[0].url, coffeeImages)
 
+  const handleFavButtonClick = (id) => {
+    console.log(id);
+    setIsFav(prevFav => !prevFav);
+  }
 
   return (
     <div className="coffee-detail-page-whole">
@@ -44,32 +54,49 @@ function CoffeeDetailsPage() {
         <div className="coffee-detail-page-imgs">
           {
             coffeeImages?.map(({ id, url }) => {
-              return (<img
-                key={id}
-                src={`${url}`}
-                alt='coffee image'
-                className="coffee-detail-page-preview-img"
-              // style={{"width": "30rem"}}
-              />)
+              return (
+                <div key={id} className="coffee-detail-page-img-wrapper">
+                  <img
+                    src={`${url}`}
+                    alt='coffee image'
+                    className="coffee-detail-page-preview-img"
+                  />
+                  <button
+                    className="coffee-detail-page-imgs-fav-button"
+                    onClick={() => handleFavButtonClick(id, isFav)}
+                  >{isFav ? <FontAwesomeIcon icon={solidFaHeart} />
+                      : <FontAwesomeIcon icon={regularFaHeart} />}
+                  </button>
+                </div>
+              )
             })
           }
         </div>
 
+
         <div className="coffee-detail-page-right">
           <div className="coffee-detail-page-general-info">
-            <p id="coffee-detail-page-product-name">Name: {name}</p>
-            <p>$ {price}</p>
-            <p>Region: {region}</p>
-            <p>Roast: {roast}</p>
-            <button
-              onClick={() => 
-                dispatch(addCartItemThunk({coffee_id: coffee.id, quantity: 1, cart_id: userCartId}))}
-            >Add to Cart</button>
+            <h1 id="coffee-detail-page-product-name">{name}</h1>
+            <h2>$ {price}</h2>
+            <h3>Region: {region}</h3>
+            <h3>Roast: {roast}</h3>
+
+            <div className="coffee-detail-add-to-cart-button">
+              <div className="coffee-detail-add-to-cart-button-wrapper">
+                <div className="text">Add to Cart</div>
+                <span className="icon">
+                  <svg viewBox="0 0 16 16" className="bi bi-cart2" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+
           </div>
 
           <div className="coffee-detail-page-owner-desc">
-            <p>Owner: {owner.username}</p>
-            <p>Description: {description}</p>
+            <h3>Owner: {owner.username}</h3>
+            <h3>Description: {description}</h3>
           </div>
         </div>
 
