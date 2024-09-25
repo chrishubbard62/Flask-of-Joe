@@ -1,0 +1,17 @@
+.delete-review-modal {
+  text-align: center;
+}
+
+.delete-review-modal button {
+  margin-top: 20px;
+  background-color: white;
+  border: 1px solid black;
+  height: 30px;
+  width: 40%;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.delete-review-yes {
+  margin-right: 30px;
+}

@@ -6,6 +6,7 @@ import Layout from './Layout';
 import CoffeeContainer from '../components/CoffeeContainer';
 import FavoritesPage from '../components/FavoritesPage/FavoritesPage';
 import CoffeeDetailsPage from '../components/CoffeeDetailsPage/CoffeeDetailsPage';
+import ManageCoffee from '../components/ManageCoffee/ManageCoffee';
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: 'favorites',
         element: <FavoritesPage />
+      },
+      {
+        path: 'users-coffee',
+        element: <ManageCoffee />
       }
       //===========lalos router changes ============
     ],

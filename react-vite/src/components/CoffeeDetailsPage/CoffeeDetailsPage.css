@@ -14,13 +14,19 @@
   column-gap: 20px;
 }
 
+.coffee-detail-page-img-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .coffee-detail-page-imgs {
   width: 100%;
 }
 
 .coffee-detail-page-preview-img {
+  position: block;
   width: 100%;
-  max-width: 500px;
+  max-width: 900px;
 }
 
 .coffee-detail-page-right {
@@ -33,3 +39,109 @@
 #coffee-detail-page-product-name {
   margin-top: 0;
 }
+.coffee-detail-page-imgs-fav-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* From Uiverse.io by JaydipPrajapati1910 */
+.coffee-detail-add-to-cart-button {
+  --width: 100px;
+  --height: 35px;
+  --button-color: #222;
+  width: var(--width);
+  height: var(--height);
+  background: var(--button-color);
+  position: relative;
+  text-align: center;
+  border-radius: 0.45em;
+  font-family: "Arial";
+  transition: background 0.3s;
+}
+
+.coffee-detail-add-to-cart-button::before {
+  position: absolute;
+  background-color: #555;
+  font-size: 0.9rem;
+  color: #fff;
+  border-radius: .25em;
+}
+
+.coffee-detail-add-to-cart-button::after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  left: calc(50% - 10px);
+}
+
+.coffee-detail-add-to-cart-button::after,
+.coffee-detail-add-to-cart-button::before {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coffee-detail-add-to-cart-button-wrapper,
+.text,
+.icon {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #fff;
+}
+
+.text {
+  top: 0
+}
+
+.text,
+.icon {
+  transition: top 0.5s;
+}
+
+.icon {
+  color: #fff;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.coffee-detail-add-to-cart-button:hover {
+  background: #222;
+}
+
+.coffee-detail-add-to-cart-button:hover .text {
+  top: -100%;
+}
+
+.coffee-detail-add-to-cart-button:hover .icon {
+  top: 0;
+}
+
+.coffee-detail-add-to-cart-button:hover:before,
+.coffee-detail-add-to-cart-button:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
