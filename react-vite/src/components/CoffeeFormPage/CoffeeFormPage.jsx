@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { createCoffeeThunk } from "../../redux/coffee";
 import { createImage } from "../../redux/coffee";
+import { getCoffeeThunk } from "../../redux/coffee";
 import './CoffeeForm.css'
 
 const ROASTS = ['Light', 'Medium', 'Dark', 'Espresso']
 
-function CoffeeFormPage() {
+function CoffeeFormPage({newCoffee}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const {id} = useParams()
+  const coffee = useSelector(state => state.coffee[id])
 
-  const [name, setName] = useState('')
+  
+
+  const [name, setName] = useState(coffee?.name || '')
   const [price, setPrice] = useState(0.00)
   const [description, SetDescription] = useState('')
   const [roast, setRoast] = useState('Select-A-Roast')
@@ -19,6 +24,10 @@ function CoffeeFormPage() {
   const [submitted, setSubmitted] = useState(false)
   const [valErrors, setValErrors] = useState({})
   const [image, setImage] = useState(null)
+
+  useEffect(() => {
+    dispatch(getCoffeeThunk(id))
+  }, [dispatch, id])
 
 
   useEffect(() => {
@@ -50,7 +59,7 @@ function CoffeeFormPage() {
     }
     const newCoffee = await dispatch(createCoffeeThunk(coffee))
     const formData = new FormData()
-    
+
     formData.append("image", image)
     formData.append("coffee_id", newCoffee.id)
     await dispatch(createImage(formData))
