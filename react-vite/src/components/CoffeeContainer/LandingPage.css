@@ -1,0 +1,31 @@
+
+
+.banner-container {
+  display: flex;
+  justify-content: center;
+  margin-top: .938rem;
+}
+
+.banner-image {
+  height: 25rem;
+  width: 66%;
+  max-width: 1000px;
+  border-radius: .6rem;
+}
+
+.landing-outer-container {
+  display: flex;
+  justify-content: center;
+}
+
+.landing-coffee-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: .5rem;
+  
+}
+
+.landing-coffee-container a{
+  text-decoration: none;
+  color: black
+}
