@@ -1,0 +1,14 @@
+.login-modal-whole {
+  text-align: center;
+}
+
+.login-modal-whole form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:10px;
+}
+
+.profile-login-modal {
+  width: 20%;
+}

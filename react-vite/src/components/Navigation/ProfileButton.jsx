@@ -6,10 +6,11 @@ import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { GiCoffeePot } from "react-icons/gi";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 function ProfileButton() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
@@ -54,21 +55,23 @@ function ProfileButton() {
               <li>{user.username}</li>
               <li>{user.email}</li>
               <li onClick={() => navigate('/users-coffee')}>
-                <NavLink to="/users-coffee" className='no-text-style'>Manage Coffee</NavLink>
+                <NavLink to="/users-coffee" className='no-text-style'>Manage Coffee </NavLink>
                 <GiCoffeePot />
               </li>
               <li>
-                <button onClick={logout}>Log Out</button>
+                <button onClick={logout} className="profile-drop-down-logout">Log Out</button>
               </li>
             </div>
           ) : (
-            <div className="user-drop-down no-bullets-li">
+            <div className="user-drop-down no-bullets-li profile-drop-down-login-signup">
               <OpenModalMenuItem
+                modalClassName="profile-login-modal"
                 itemText="Log In"
                 onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
               <OpenModalMenuItem
+                modalClassName="profile-signup-modal"
                 itemText="Sign Up"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
