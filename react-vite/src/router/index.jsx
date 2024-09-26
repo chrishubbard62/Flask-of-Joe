@@ -7,6 +7,8 @@ import CoffeeContainer from '../components/CoffeeContainer';
 import FavoritesPage from '../components/FavoritesPage/FavoritesPage';
 import CoffeeDetailsPage from '../components/CoffeeDetailsPage/CoffeeDetailsPage';
 import ManageCoffee from '../components/ManageCoffee/ManageCoffee';
+import CartPage from '../components/CartPage';
+
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +26,10 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
 
+      },
+      {
+        path: "cart",
+        element: <CartPage />
       },
 //? ///////////////////////////////////////////////////// chris //////////////////////
       // {
