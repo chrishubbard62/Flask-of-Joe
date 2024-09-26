@@ -37,6 +37,12 @@
     border: 1px lightgrey solid;
     border-radius: 10px;
     width: 230px; /* or width: 24% */
+    cursor: pointer;
+}
+
+.favorite-coffees-image {
+    width: 100%;
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 1200px) {

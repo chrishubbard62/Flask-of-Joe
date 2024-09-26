@@ -26,7 +26,6 @@ const FavoritesPage = () => {
                     <img style={{ height: '100px', width: '100px' }} />
                     <h3>Your Favorites</h3>
                 </div>
-                <button>+ Create new</button>
             </div>
             <div className='search-bar-area'>
                 <input className='search-input' type='search' placeholder='Search your favorites' />
@@ -37,7 +36,7 @@ const FavoritesPage = () => {
                 {favs && favs.map(fav => {
                     return (
                         <div key={fav.id} className='coffee-card-favs' onClick={()=>navigate(`/coffees/${fav.id}`)}>
-                            <img style={{ width: '100%', borderRadius: '10px' }} src={fav.coffee.coffeeImages[0].url} alt='image of coffee product' />
+                            <img className='favorite-coffees-image' src={fav.coffee.coffeeImages[0].url} alt='image of coffee product' />
                             <div>
                                 <div>{fav.coffee.name}</div>
                                 <div>{fav.coffee.price}</div>

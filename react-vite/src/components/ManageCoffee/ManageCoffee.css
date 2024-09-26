@@ -1,3 +1,40 @@
+.manage-coffee-card-container{
+    /* border: 2px green solid; */
+    display: flex;
+    gap: 5px;
+}
+
 .manage-coffee-card{
+    /* border: 1px lightgrey solid; */
+    /* border-radius: 10px; */
+    width: 230px; /* or width: 24% */
     margin: 10px;
+    cursor: pointer;
+}
+.manage-coffee-card-no-button{
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.manage-coffees-image {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.manage-coffee-card-details{
+    margin: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+    /* make cards a certain size to fit only 2 */
+    .manage-coffee-card{
+        width: 24%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    /* make cards a certain size to fit only 2 */
+    .manage-coffee-card{
+        width: 49%;
+    }
 }
