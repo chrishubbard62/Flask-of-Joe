@@ -7,9 +7,12 @@ import { FaHeart } from "react-icons/fa6";
 import { GiCoffeeBeans, GiCoffeePot } from "react-icons/gi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from "react-redux";
 
 function Navigation() {
   const navigate = useNavigate();
+  const user = useSelector((store) => store.session.user);
+
   return (
     <div className='nav-bar-the-real-bar'>
       <div className="nav-bar-left-side" onClick={() => navigate('/')}>
@@ -24,24 +27,26 @@ function Navigation() {
         </button>
       </div>
 
+      <div className="nav-bar-new-block">
+        {user &&
+          (<div onClick={() => navigate('/coffees/new')} className="nav-bar-new-img-text">
+            <NavLink to="/coffees/new" className='no-text-style nav-bar-new-text'> Create New </NavLink>
+            <GiCoffeeBeans className="nav-bar-icons" />
+          </div>)}
+      </div>
+
       <div className="nav-bar-right-side">
         <div className="no-bullets-li">
-          <li onClick={() => navigate('/coffees/new')}>
-            <NavLink to="/coffees/new" className='no-text-style'>New </NavLink>
-            <GiCoffeeBeans />
-          </li>
-          <li onClick={() => navigate('/users-coffee')}>
-            <NavLink to="/users-coffee" className='no-text-style'>Manage </NavLink>
-            <GiCoffeePot />
-          </li>
           <li>
-            <FaHeart onClick={() => navigate('/favorites')} className='no-text-style' />
+            <FaHeart onClick={() => navigate('/favorites')} className='no-text-style nav-bar-icons nav-bar-heart-icon' />
           </li>
+
           <li className="nav-profile-button">
-            <ProfileButton />
+            <ProfileButton className="nav-bar-icons" />
           </li>
+
           <li onClick={() => navigate('/cart')}>
-            <FaCartShopping />
+            <FaCartShopping className="nav-bar-icons" />
           </li>
         </div>
       </div>

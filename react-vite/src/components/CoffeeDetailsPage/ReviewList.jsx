@@ -14,7 +14,8 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
   // const dispatch = useDispatch();
   // console.log(sessionUser)
 
-  if (!reviews) {
+  // console.log(reviews)
+  if (!reviews?.length) {
     return (
       <h2>No Reviews Yet!</h2>
     )
@@ -27,15 +28,15 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
   };
 
   const isDisabledDelete = (review) => {
-    return sessionUser === null 
-          ||!Object.values(sessionUser).length 
+    return sessionUser === null
+          ||!Object.values(sessionUser).length
           || sessionUser.id !== review.User.id;
   };
 
   const isDisabledReview = sessionUser === null
-                            || sessionUser && !Object.values(sessionUser).length 
+                            || sessionUser && !Object.values(sessionUser).length
                             || id === sessionUser.id
-                            || reviews.find(review => review.userId === sessionUser.id 
+                            || reviews.find(review => review.userId === sessionUser.id
                                             && review.coffeeId === coffee.id
                                           )
 
@@ -78,7 +79,7 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
                   <p id="review-list-username"> {review.User.username} </p>
                   <p>{review.createdAt}</p>
                 </div>
-                
+
                 <div
                   className={isDisabledDelete(review) ? 'disabled' : 'delete-review-button'}
                 >

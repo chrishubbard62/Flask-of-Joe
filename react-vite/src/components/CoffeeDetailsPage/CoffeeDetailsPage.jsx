@@ -22,7 +22,7 @@ function CoffeeDetailsPage() {
   const reviewsObj = useSelector((state) => state.review);
   const reviews = Object.values(reviewsObj);
   const userCart = useSelector((state) => state.cart);
-  const userCartId = userCart.currentCartId;
+  const userCartId = userCart.id;
 
   //!-------------------Luna-------------------
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +34,6 @@ function CoffeeDetailsPage() {
   //Favourite Functionality
   const [isFav, setIsFav] = useState(false);
 
-  // console.log(userCartId)
 
   const [ isLoaded, setIsLoaded ] = useState(false);
 
@@ -51,13 +50,15 @@ function CoffeeDetailsPage() {
   //----------lalo----------------
   useEffect(()=>{
     if(!isFav && fav){
-      // let thisfav = fav.find((el)=>el.coffeeId === +coffeeId)
-      // if(thisfav && thisfav.coffeeId === +coffeeId){
-      //   setIsFav(true)
-      // }
       if(fav.find((el)=>el.coffeeId === +coffeeId))setIsFav(true)
     }
   },[coffee,fav])
+
+  let currReviews;
+  useEffect(()=>{
+    currReviews = reviews.filter((review)=>review.coffeeId === +coffeeId)
+    // console.log('this is currReviews',currReviews)
+  },[coffee,reviews])
   //----------lalo----------------
 
   if (!isLoaded ) {
@@ -78,6 +79,10 @@ function CoffeeDetailsPage() {
     //------------------------lalo-------------------------
     // console.log(id);
     // setIsFav(prevFav => !prevFav);
+  }
+
+  const addToCart = () => {
+    dispatch(addCartItemThunk(userCartId, {quantity: 1, coffee_id: coffee.id}))
   }
 
   return (
@@ -116,7 +121,7 @@ function CoffeeDetailsPage() {
             <h3>Roast: {roast}</h3>
           </div>
 
-          <button>Add to Cart</button>
+          <button onClick={addToCart}>Add to Cart</button>
 
           <div className="coffee-detail-page-owner-desc">
             <div className="coffee-detail-page-toggle-block" onClick={() => setIsOpen(!isOpen)}>
@@ -139,7 +144,7 @@ function CoffeeDetailsPage() {
       </div>
 
       <ReviewList
-      reviews={reviews}
+      reviews={reviews.filter((review)=>review.coffeeId === +coffeeId)}
       coffee={coffee}
       />
     </div>
