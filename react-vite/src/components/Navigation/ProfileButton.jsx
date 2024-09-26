@@ -5,6 +5,9 @@ import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { GiCoffeePot } from "react-icons/gi";
+import { NavLink } from "react-router-dom";
+
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -41,7 +44,7 @@ function ProfileButton() {
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      <button onClick={toggleMenu} className="nav-bar-profile-button nav-bar-icons">
         <FaUserCircle />
       </button>
       {showMenu && (
@@ -50,6 +53,10 @@ function ProfileButton() {
             <div className="user-drop-down no-bullets-li">
               <li>{user.username}</li>
               <li>{user.email}</li>
+              <li onClick={() => navigate('/users-coffee')}>
+                <NavLink to="/users-coffee" className='no-text-style'>Manage Coffee</NavLink>
+                <GiCoffeePot />
+              </li>
               <li>
                 <button onClick={logout}>Log Out</button>
               </li>
