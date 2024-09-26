@@ -81,7 +81,7 @@ def remove_cart_item(id):
     cart = cart_item.cart.to_dict_basic()
 
     if not cart['userId'] == current_user.id:
-        return {"errros":"forbidden"},403
+        return {"errors":"forbidden"},403
 
     cart = Cart.query.filter()
     db.session.delete(cart_item)
