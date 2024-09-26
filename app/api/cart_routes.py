@@ -93,24 +93,69 @@ def remove_cart_item(id):
 
 
 
-@cart_routes.route('/<int:cart_item_id>', methods=['PUT'])
+@cart_routes.route('/<int:cart_id>', methods=['PUT'])
 @login_required
-def update_cart_item(cart_item_id):
+def update_cart_item(cart_id):
     '''
-    update a cart item
+    update a cart item (add up but not cover old quantity)
     '''
     form = CartItemForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    cart_item = CartItem.query.get(cart_item_id)
-    if not cart_item:
-        return {"errors":"Cart item cannot be found"},404
+    cart = Cart.query.get(cart_id)
 
-    if not cart_item.cart.user_id == current_user.id:
-        return {"errors":"forbidden"},403
+    # if not cart_item.cart.user_id == current_user.id:
+    #     return {"errors":"forbidden"},403
 
     if form.validate_on_submit():
-        cart_item.quantity = form.data['quantity']
+        coffee_id = form.data['coffee_id']
+        cartItems = cart.to_dict()['cartItems']
+        found_cartItem = list(filter(lambda cartItem: cartItem['coffeeId'] == coffee_id, cartItems))
+
+        if len(found_cartItem) == 0:
+            new_item = CartItem(
+                cart_id = cart.id,
+                coffee_id = coffee_id,
+                quantity = 1,)
+            db.session.add(new_item)
+            db.session.commit()
+            return new_item.to_dict_basic()
+        else:
+            id = found_cartItem[0]['id']
+            cart_item = CartItem.query.get(id)
+            new_quantity = request.get_json()['quantity']
+            current_quantity = cart_item.to_dict_basic()['quantity']
+            quantity = current_quantity + new_quantity
+            cart_item.quantity = quantity
+            db.session.commit()
+            return cart_item.to_dict_basic()
+
+    return form.errors,400
+
+
+@cart_routes.route('/<int:cart_id>/update', methods=['PUT'])
+@login_required
+def update_cart_item_cover(cart_id):
+    '''
+    update a cart item (cover old quantity)
+    '''
+    form = CartItemForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    cart = Cart.query.get(cart_id)
+
+    # if not cart_item.cart.user_id == current_user.id:
+    #     return {"errors":"forbidden"},403
+
+    if form.validate_on_submit():
+        coffee_id = form.data['coffee_id']
+        cartItems = cart.to_dict()['cartItems']
+        found_cartItem = list(filter(lambda cartItem: cartItem['coffeeId'] == coffee_id, cartItems))
+
+        id = found_cartItem[0]['id']
+        cart_item = CartItem.query.get(id)
+        cart_item.quantity = request.get_json()['quantity']
+
         db.session.commit()
         return cart_item.to_dict_basic()
 

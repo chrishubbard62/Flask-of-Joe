@@ -33,9 +33,9 @@ const addCartItem = (payload) => {
   }
 }
 
-export const addCartItemThunk = (cartItem) => async(dispatch) => {
-  const res = await fetch(`/api/carts/`, {
-    method: 'POST',
+export const addCartItemThunk = (cartId, cartItem) => async(dispatch) => {
+  const res = await fetch(`/api/carts/${cartId}`, {
+    method: 'PUT',
     body: JSON.stringify(cartItem),
     headers: { 'Content-Type': 'application/json' }
   });
@@ -76,12 +76,8 @@ export default function cartReducer(state=initialState, action) {
       const newState = {...state};
       const cartItem = action.payload;
       // console.log(cartItem)
-      console.log(cartItem)
-      newState[cartItem.cartId] = {
-        // ...state.cartItems,
-        ...cartItem
-      }
-      console.log(cartItem.id)
+      // console.log(cartItem)
+      newState[cartItem.coffeeId] = cartItem.quantity
       return newState;
     }
 

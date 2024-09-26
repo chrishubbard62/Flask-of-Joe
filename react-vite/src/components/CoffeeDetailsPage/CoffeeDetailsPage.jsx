@@ -22,7 +22,7 @@ function CoffeeDetailsPage() {
   const reviewsObj = useSelector((state) => state.review);
   const reviews = Object.values(reviewsObj);
   const userCart = useSelector((state) => state.cart);
-  const userCartId = userCart.currentCartId;
+  const userCartId = userCart.id;
 
   //!-------------------Luna-------------------
   const [isOpen, setIsOpen] = useState(false);
@@ -80,6 +80,10 @@ function CoffeeDetailsPage() {
     // setIsFav(prevFav => !prevFav);
   }
 
+  const addToCart = () => {
+    dispatch(addCartItemThunk(userCartId, {quantity: 1, coffee_id: coffee.id}))
+  }
+
   return (
     <div className="coffee-detail-page-whole">
 
@@ -116,7 +120,7 @@ function CoffeeDetailsPage() {
             <h3>Roast: {roast}</h3>
           </div>
 
-          <button>Add to Cart</button>
+          <button onClick={addToCart}>Add to Cart</button>
 
           <div className="coffee-detail-page-owner-desc">
             <div className="coffee-detail-page-toggle-block" onClick={() => setIsOpen(!isOpen)}>
