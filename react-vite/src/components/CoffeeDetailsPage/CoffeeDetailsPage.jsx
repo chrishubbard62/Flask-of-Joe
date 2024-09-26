@@ -34,7 +34,6 @@ function CoffeeDetailsPage() {
   //Favourite Functionality
   const [isFav, setIsFav] = useState(false);
 
-  console.log(fav)
 
   const [ isLoaded, setIsLoaded ] = useState(false);
 

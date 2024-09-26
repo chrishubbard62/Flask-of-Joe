@@ -11,7 +11,8 @@ def get_cart():
     '''
     get the cart for the current user
     '''
-    cart = Cart.query.filter(Cart.user_id == current_user.id and Cart.pending is True).first()
+    cart = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.pending == 1).first()
+    print('\n\n',cart,'\n\n')
     if not cart:
         return {"errrors":"Cannot find this cart"},404
     return cart.to_dict()
@@ -23,12 +24,12 @@ def change_pending():
     '''
     change status of cart from pending false to true
     '''
-    curr_cart = Cart.query.filter(Cart.user_id == current_user.id and Cart.pending is True).first()
+    curr_cart = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.pending == 1).first()
     curr_cart.pending = False
     new_cart = Cart(user_id = current_user.id, pending=True)
     db.session.add(new_cart)
     db.session.commit()
-    return new_cart.to_dict_basic() # not sure how well use for now
+    return new_cart.to_dict_basic()
 
 #=============================================================================
 
@@ -87,7 +88,7 @@ def remove_cart_item(id):
     db.session.delete(cart_item)
     db.session.commit()
 
-    return {"message":"Successfully deleted"}
+    return {"message":"Successfully deleted", 'id': cart_item.coffee_id}
 
 
 
@@ -148,6 +149,7 @@ def update_cart_item_cover(cart_id):
     #     return {"errors":"forbidden"},403
 
     if form.validate_on_submit():
+        # print(form.data)
         coffee_id = form.data['coffee_id']
         cartItems = cart.to_dict()['cartItems']
         found_cartItem = list(filter(lambda cartItem: cartItem['coffeeId'] == coffee_id, cartItems))
@@ -160,3 +162,13 @@ def update_cart_item_cover(cart_id):
         return cart_item.to_dict_basic()
 
     return form.errors,400
+
+@cart_routes.route('/cart_items/<int:cart_id>')
+@login_required
+def getCartitems(cart_id):
+    '''
+    grabs all cart items by cart id
+    '''
+    cart_items = CartItem.query.filter(CartItem.cart_id == cart_id).all()
+
+    return {'cartItems': [item.to_dict_basic() for item in cart_items]}
