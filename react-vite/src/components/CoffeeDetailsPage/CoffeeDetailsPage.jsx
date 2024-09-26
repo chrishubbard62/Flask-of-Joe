@@ -50,13 +50,15 @@ function CoffeeDetailsPage() {
   //----------lalo----------------
   useEffect(()=>{
     if(!isFav && fav){
-      // let thisfav = fav.find((el)=>el.coffeeId === +coffeeId)
-      // if(thisfav && thisfav.coffeeId === +coffeeId){
-      //   setIsFav(true)
-      // }
       if(fav.find((el)=>el.coffeeId === +coffeeId))setIsFav(true)
     }
   },[coffee,fav])
+
+  let currReviews;
+  useEffect(()=>{
+    currReviews = reviews.filter((review)=>review.coffeeId === +coffeeId)
+    // console.log('this is currReviews',currReviews)
+  },[coffee,reviews])
   //----------lalo----------------
 
   if (!isLoaded ) {
@@ -142,7 +144,7 @@ function CoffeeDetailsPage() {
       </div>
 
       <ReviewList
-      reviews={reviews}
+      reviews={reviews.filter((review)=>review.coffeeId === +coffeeId)}
       coffee={coffee}
       />
     </div>
