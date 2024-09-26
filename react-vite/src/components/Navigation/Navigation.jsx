@@ -7,6 +7,7 @@ import { FaHeart } from "react-icons/fa6";
 import { GiCoffeeBeans, GiCoffeePot } from "react-icons/gi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import TestingModal from "../TestingModal/TestingModal";
 
 function Navigation() {
   const navigate = useNavigate();
@@ -43,6 +44,9 @@ function Navigation() {
           <li onClick={() => navigate('/cart')}>
             <FaCartShopping />
           </li>
+          <div>
+            {/* <TestingModal /> */}
+          </div>
         </div>
       </div>
     </div>
