@@ -37,17 +37,19 @@ function Navigation() {
 
       <div className="nav-bar-right-side">
         <div className="no-bullets-li">
-          <li>
+          {user && 
+          (<li>
             <FaHeart onClick={() => navigate('/favorites')} className='no-text-style nav-bar-icons nav-bar-heart-icon' />
-          </li>
+          </li>)}
 
           <li className="nav-profile-button">
             <ProfileButton className="nav-bar-icons" />
           </li>
 
-          <li onClick={() => navigate('/cart')}>
+          {user && 
+          (<li onClick={() => navigate('/cart')}>
             <FaCartShopping className="nav-bar-icons" />
-          </li>
+          </li>)}
         </div>
       </div>
     </div>

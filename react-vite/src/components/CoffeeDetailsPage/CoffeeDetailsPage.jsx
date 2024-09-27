@@ -1,7 +1,7 @@
 import "./CoffeeDetailsPage.css";
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getCoffeeThunk } from "../../redux/coffee";
 import { getReviewsThunk } from "../../redux/review";
 import ReviewList from "./ReviewList";
@@ -23,6 +23,7 @@ function CoffeeDetailsPage() {
   const reviews = Object.values(reviewsObj);
   const userCart = useSelector((state) => state.cart);
   const userCartId = userCart.id;
+  const navigate = useNavigate();
 
   //!-------------------Luna-------------------
   const [isOpen, setIsOpen] = useState(false);
@@ -83,6 +84,7 @@ function CoffeeDetailsPage() {
 
   const addToCart = () => {
     dispatch(addCartItemThunk(userCartId, {quantity: 1, coffee_id: coffee.id}))
+      .then(navigate('/cart'))
   }
 
   return (
