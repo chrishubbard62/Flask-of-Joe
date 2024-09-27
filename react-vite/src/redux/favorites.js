@@ -75,17 +75,22 @@ export default function favoritesReducer(state = initialState, action){
             return {...state, favorites: [...action.payload]}
         case ADD_NEW_FAV:{
             let newState = {...state}
-            newState.favorites.push(action.payload)
+            if (newState.favorites) {
+                newState.favorites.push(action.payload)
+            }
             return {newState}
         }
         case REMOVE_FAV:{
             const newState = {...state};
-            newState.favorites.forEach(fav => {
-                let index = newState.favorites.indexOf(fav)
-                if(fav.id === action.payload.deletedFavId){
-                    newState.favorites.splice(index,1)
-                }
-            });
+
+            if (newState.favorites) {
+                newState.favorites.forEach(fav => {
+                    let index = newState.favorites.indexOf(fav)
+                    if (fav.id === action.payload.deletedFavId) {
+                        newState.favorites.splice(index, 1)
+                    }
+                });
+            }
             return {...newState}
         }
         default:

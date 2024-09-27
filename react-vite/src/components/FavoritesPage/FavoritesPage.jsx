@@ -35,7 +35,7 @@ const FavoritesPage = () => {
             <div className='div-card-container'>
                 {favs && favs.map(fav => {
                     return (
-                        <div key={fav.id} className='coffee-card-favs' onClick={()=>navigate(`/coffees/${fav.id}`)}>
+                        <div key={fav.id} className='coffee-card-favs' onClick={()=>navigate(`/coffees/${fav.coffeeId}`)}>
                             <img className='favorite-coffees-image' src={fav.coffee.coffeeImages[0].url} alt='image of coffee product' />
                             <div>
                                 <div>{fav.coffee.name}</div>
