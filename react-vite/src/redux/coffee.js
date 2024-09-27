@@ -7,7 +7,7 @@ const UPDATE_COFFEE = 'coffees/updateCoffee'
 const UPDATE_IMAGE = 'coffee/updateImage'
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
 //-----------lalo-----------------
-
+const DELETE_COFFEE = 'coffee/deleteCoffee'
 //-----------lalo-----------------
 
 const addPost = (payload) => {
@@ -146,6 +146,13 @@ export const getCoffeeThunk = (coffeeId) => async (dispatch) => {
     }
 }
 
+export const deleteCoffee = (payload) => {
+    return {
+        type: DELETE_COFFEE,
+        payload
+    }
+}
+
 //!--------------------------Luna---------------------------------
 const initialState = {}
 
@@ -179,7 +186,11 @@ export default function coffeeReducer(state = initialState, action) {
         }
         //? Chris /////////////////////////////////////////////////////////////////////////////////////
         //===================Lalos reducer code========================
-        
+        case DELETE_COFFEE:{
+            const newState = {...state}
+            delete newState[action.payload]
+            return newState
+        }
         //===================Lalos reducer code========================
 
         //!--------------------------Luna---------------------------------

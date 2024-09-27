@@ -3,7 +3,7 @@ import { FaRegStar } from "react-icons/fa";
 
 
 function CoffeeCard({ coffee }) {
-  if (!coffee) return <h2>Loading</h2>
+  if (!coffee) return
 
   return (
     <Link className='coffee-card-link' to={`/coffees/${coffee.id}`}>

@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as usersCoffeeActions from '../../redux/usersCoffee';
+import * as coffeeActions from '../../redux/coffee';
 import './DeleteCoffeeModal.css';
 const SEED_ID = [1,2,3,4,5];
 
@@ -11,6 +12,7 @@ const DeleteCoffeeModal = ({coffee}) => {
 
     const handleCLick = async (coffeeId) => {
         await dispatch(usersCoffeeActions.deleteCoffeeThunk(coffeeId));
+        await dispatch(coffeeActions.deleteCoffee(coffeeId));
         closeModal();
     }
 
