@@ -1,42 +1,59 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './ManageCoffee.css';
 import { useDispatch, useSelector } from 'react-redux';
-import * as userCoffeeActions from '../../redux/usersCoffee';
+import * as coffeeActions from '../../redux/coffee';
+import { useNavigate } from 'react-router-dom';
+import OpenModalButton from '../OpenModalButton';
+import DeleteCoffeeModal from '../DeleteCoffeeModal';
+import { getUserCoffeesThunk } from '../../redux/usersCoffee';
 
 const ManageCoffee = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { usersCoffees } = useSelector(state => state.userCoffee);
     const user = useSelector(state => state.session.user);
+    const newUserCoffees = useSelector(state=>state.userCoffee)
+    // const [usersCoffees,setUsersCoffees] = useState([]);
+    // console.log(coffees)
+
+    const usersCoffees = Object.values(newUserCoffees);
 
     useEffect(() => {
-        const innerFunct = async () => {
-            await dispatch(userCoffeeActions.getUserCoffeesThunk())
-        }
-        innerFunct()
+        dispatch(coffeeActions.getCoffeesThunk())
+        dispatch(getUserCoffeesThunk())
     }, [dispatch, user])
 
-    if (!user) return
-    if (!usersCoffees) return
+
+    if (!user) return <h1>loading...</h1>
+    if (!newUserCoffees) return <h1>loading...</h1>
+
 
     return (
         <>
             <h1>manage coffee</h1>
-            {usersCoffees.length > 0 ? usersCoffees.map((coffee) => {
-                return (
-                    <div key={coffee.id} className='manage-coffee-card'>
-                        <img style={{ height: '100px' }} src={coffee.coffeeImages[0].url} />
-                        <div>{coffee.name}</div>
-                        <div>{coffee.description}</div>
-                        <div>price: {coffee.price}</div>
-                        <div>region: {coffee.region}</div>
-                        <div>roast: {coffee.roast}</div>
-                        <button>Add to cart</button>
-                    </div>
-                )
-            }) : <>
-                <h2>Put your product up for sale!</h2>
-                <button>Add a product</button>
-            </>}
+            <div className='manage-coffee-card-container'>
+                {usersCoffees.length > 0 ? usersCoffees.map((coffee) => {
+                    return (
+                        <div key={coffee.id} className='manage-coffee-card'>
+                            <div className='manage-coffee-card-no-button' onClick={() => navigate(`/coffees/${coffee.id}`)}>
+                                <img className='manage-coffees-image' src={coffee.coffeeImages[0].url} />
+                                <div className='manage-coffee-card-details'>
+                                    <div>{coffee.name}</div>
+                                    <div>{coffee.description}</div>
+                                    <div>price: {coffee.price}</div>
+                                    <div>region: {coffee.region}</div>
+                                    <div>roast: {coffee.roast}</div>
+                                </div>
+                            </div>
+                            <OpenModalButton
+                                buttonText='delete coffee'
+                                modalComponent={<DeleteCoffeeModal coffee={coffee} />} />
+                        </div>
+                    )
+                }) : <>
+                    <h2>Put your product up for sale!</h2>
+                    <button>Add a product</button>
+                </>}
+            </div>
         </>
     )
 }

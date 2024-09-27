@@ -23,7 +23,7 @@ export default function CartPage() {
     dispatch(getCartThunk())
     dispatch(getCoffeesThunk())
     if(data.id){
-      dispatch(getCartItemsThunk(data.id)) // mad :(
+      dispatch(getCartItemsThunk(data.id))
     }
   }, [dispatch, data.id])
   // data doesnt exist on first and second render?

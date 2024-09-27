@@ -36,7 +36,7 @@ def user_coffees():
   """
   Queries all the coffees owned by the current user also returns the user info
   """
-  return {"usersCoffees": [coffee.to_dict_picture() for coffee in current_user.coffees]}
+  return {coffee.id: coffee.to_dict_picture() for coffee in current_user.coffees}
 
 
 @coffee_routes.route('/<int:id>')
@@ -111,7 +111,8 @@ def delete_coffee(id):
   Deletes and existing coffee based off its id if the user is logged in
   """
   coffee = Coffee.query.get(id)
-  print('ok')
+  # print('ok')
+  id = coffee.id
 
   if not coffee:
     return {"message": "Coffee does not exist"}, 404
@@ -121,7 +122,7 @@ def delete_coffee(id):
   db.session.delete(coffee)
   db.session.commit()
 
-  return {"message": "Successfully deleted"}
+  return {"message": "Successfully deleted", 'coffeeId': id}
 
 
 #?############################# Chris #################################################################
