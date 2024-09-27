@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './ManageCoffee.css';
 import { useDispatch, useSelector } from 'react-redux';
 import * as coffeeActions from '../../redux/coffee';
@@ -12,9 +12,7 @@ const ManageCoffee = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const newUserCoffees = useSelector(state=>state.userCoffee)
-    // const [usersCoffees,setUsersCoffees] = useState([]);
-    // console.log(coffees)
-
+   
     const usersCoffees = Object.values(newUserCoffees);
 
     useEffect(() => {

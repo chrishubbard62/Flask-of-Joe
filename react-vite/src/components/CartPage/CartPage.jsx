@@ -15,8 +15,6 @@ export default function CartPage() {
   const coffeeArr = Object.values(coffees)
 
   const cartCoffees = coffeeArr.filter(coffee => coffeeIds.includes(coffee.id.toString()))
-  // console.log(cartItems)
-
 
 
   useEffect(() => {
@@ -26,8 +24,8 @@ export default function CartPage() {
       dispatch(getCartItemsThunk(data.id))
     }
   }, [dispatch, data.id])
-  // data doesnt exist on first and second render?
-  if (!data) return <h1>loading...</h1>
+
+  if (!data || !cartItems || !coffees) return <h1>loading...</h1>
 
   const handleCheckout = () => {
     dispatch(submitCartThunk())
