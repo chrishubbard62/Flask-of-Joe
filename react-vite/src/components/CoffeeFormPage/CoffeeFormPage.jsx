@@ -109,8 +109,6 @@ function CoffeeFormPage({ newCoffee }) {
   }, [id])
 
 
-
-
   if (!newCoffee && user?.id !== coffee?.ownerId) {
     return <h2>Forbidden</h2>
   }
@@ -130,7 +128,7 @@ function CoffeeFormPage({ newCoffee }) {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            {submitted ? <p className="errors">{valErrors.name}</p> : <BeanBreak/>}
+            {submitted ? <p className="errors">{valErrors.name}</p> : <BeanBreak />}
           </div>
           <div className="form-div">
             <p> Give a short description of your coffee <br />
@@ -144,7 +142,7 @@ function CoffeeFormPage({ newCoffee }) {
               value={description}
               onChange={(e) => SetDescription(e.target.value)}
             />
-            {submitted ? <p className="errors">{valErrors.description}</p> : <BeanBreak/>}
+            {submitted ? <p className="errors">{valErrors.description}</p> : <BeanBreak />}
           </div>
           <div className="form-div">
             <p>Select a roast for the coffee</p>
@@ -158,7 +156,7 @@ function CoffeeFormPage({ newCoffee }) {
               <option value="Dark">Dark</option>
               <option value="Espresso">Espresso</option>
             </select>
-            {submitted ? <p className="errors">{valErrors.roast}</p> : <BeanBreak/>}
+            {submitted ? <p className="errors">{valErrors.roast}</p> : <BeanBreak />}
           </div>
           <div className="form-div">
             <p>What region was the coffee grown in?</p>
@@ -181,15 +179,23 @@ function CoffeeFormPage({ newCoffee }) {
             {submitted ? <p className="errors">{valErrors.price}</p> : <BeanBreak />}
           </div>
           <div className="form-div">
-            <p>Choose an image for your coffee</p>
-            {disabled && <p>File uploads are disabled for demo-coffees if you would like to test image updates please create a new coffee!</p>}
-            <input
-              disabled={disabled}
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
-            {image && <img src={URL.createObjectURL(image)} alt="preview" style={{ width: '5rem' }} />}
+            <div className='inner-picture-div'>
+              <div>
+                <p>Choose an image for your coffee</p>
+                {disabled && <p>File uploads are disabled for demo-coffees if you would like to test image updates please create a new coffee!</p>}
+
+                <input
+                  disabled={disabled}
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+
+              </div>
+              <div className="picture-container">
+              {image && <img src={URL.createObjectURL(image)} alt="preview" className='form-image-container' style={{ height: '5rem' }} />}
+              </div>
+            </div>
             {submitted && newCoffee ? <p className="errors">{valErrors.image}</p> : <BeanBreak />}
           </div>
           {newCoffee ? <button onClick={handleSubmit}>Create Coffee</button> : <button onClick={handleUpdate}>Update Coffee</button>}
