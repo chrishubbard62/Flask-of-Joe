@@ -108,6 +108,14 @@ function CoffeeFormPage({ newCoffee }) {
     if (SEED_IDS.includes(id)) setDisabled(true);
   }, [id])
 
+  const autoFill = () => {
+  setName('random coffee')
+  setPrice(19.99)
+  SetDescription('The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal.')
+  setRoast('Medium')
+  setRegion('silly goose town')
+  // setImage()
+  }
 
 
 
@@ -194,6 +202,7 @@ function CoffeeFormPage({ newCoffee }) {
           </div>
           {newCoffee ? <button onClick={handleSubmit}>Create Coffee</button> : <button onClick={handleUpdate}>Update Coffee</button>}
         </form>
+          {newCoffee ? <button onClick={autoFill}> auto fill</button> : null}
       </div>
     </div>
   )

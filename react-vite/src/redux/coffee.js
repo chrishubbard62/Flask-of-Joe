@@ -6,6 +6,9 @@ const CREATE_COFFEE = 'coffees/createCoffee'
 const UPDATE_COFFEE = 'coffees/updateCoffee'
 const UPDATE_IMAGE = 'coffee/updateImage'
 //? Chris /////////////////////////////////////////////////////////////////////////////////////
+//-----------lalo-----------------
+
+//-----------lalo-----------------
 
 const addPost = (payload) => {
     return {
@@ -33,6 +36,10 @@ const updateCoffee = (payload) => {
         payload
     }
 }
+
+//---------------lalo----------------
+
+//---------------lalo----------------
 
 export const updateImageThunk =  (imageId, post) => async(dispatch) => {
     const res = await fetch(`/api/images/${imageId}`, {
@@ -113,7 +120,6 @@ export const createImage = (post) => async (dispatch) => {
 
 //===============Lalos coffee.js code ==========================
 
-
 //===============Lalos coffee.js code ==========================
 
 
@@ -173,7 +179,7 @@ export default function coffeeReducer(state = initialState, action) {
         }
         //? Chris /////////////////////////////////////////////////////////////////////////////////////
         //===================Lalos reducer code========================
-
+        
         //===================Lalos reducer code========================
 
         //!--------------------------Luna---------------------------------

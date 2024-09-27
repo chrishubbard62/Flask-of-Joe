@@ -1,26 +1,31 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './ManageCoffee.css';
 import { useDispatch, useSelector } from 'react-redux';
-import * as userCoffeeActions from '../../redux/usersCoffee';
+import * as coffeeActions from '../../redux/coffee';
 import { useNavigate } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import DeleteCoffeeModal from '../DeleteCoffeeModal';
+import { getUserCoffeesThunk } from '../../redux/usersCoffee';
 
 const ManageCoffee = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { usersCoffees } = useSelector(state => state.userCoffee);
     const user = useSelector(state => state.session.user);
+    const newUserCoffees = useSelector(state=>state.userCoffee)
+    // const [usersCoffees,setUsersCoffees] = useState([]);
+    // console.log(coffees)
+
+    const usersCoffees = Object.values(newUserCoffees);
 
     useEffect(() => {
-        const innerFunct = async () => {
-            await dispatch(userCoffeeActions.getUserCoffeesThunk())
-        }
-        innerFunct()
+        dispatch(coffeeActions.getCoffeesThunk())
+        dispatch(getUserCoffeesThunk())
     }, [dispatch, user])
 
-    if (!user) return
-    if (!usersCoffees) return
+
+    if (!user) return <h1>loading...</h1>
+    if (!newUserCoffees) return <h1>loading...</h1>
+
 
     return (
         <>
@@ -41,7 +46,7 @@ const ManageCoffee = () => {
                             </div>
                             <OpenModalButton
                                 buttonText='delete coffee'
-                                modalComponent={<DeleteCoffeeModal coffee='coffee for now' />} />
+                                modalComponent={<DeleteCoffeeModal coffee={coffee} />} />
                         </div>
                     )
                 }) : <>

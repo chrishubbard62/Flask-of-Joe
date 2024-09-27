@@ -1,14 +1,16 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import * as coffeeActions from '../../redux/coffee';
+import * as usersCoffeeActions from '../../redux/usersCoffee';
 import './DeleteCoffeeModal.css';
+const SEED_ID = [1,2,3,4,5];
 
-const DeleteCoffeeModal = () => {
+
+const DeleteCoffeeModal = ({coffee}) => {
     const {closeModal} = useModal();
     const dispatch = useDispatch();
 
-    const handleCLick = async () => {
-        await dispatch(coffeeActions.deleteCoffeeThunk());
+    const handleCLick = async (coffeeId) => {
+        await dispatch(usersCoffeeActions.deleteCoffeeThunk(coffeeId));
         closeModal();
     }
 
@@ -16,7 +18,7 @@ const DeleteCoffeeModal = () => {
         <div className='delete-coffee-modal-box'>
             <h1>Confirm Delete</h1>
             <p>Are you sure you want to remove this coffee?</p>
-            <button className='delete-coffee-button' onClick={()=>{handleCLick()}}>Yes (Delete Coffee)</button>
+            <button disabled={SEED_ID.includes(coffee.id)}className='delete-coffee-button' onClick={()=>{handleCLick(coffee.id)}}>Yes (Delete Coffee)</button>
             <button className='delete-coffee-button' onClick={()=>{closeModal()}}>No (Keep Coffee)</button>
         </div>
     )
