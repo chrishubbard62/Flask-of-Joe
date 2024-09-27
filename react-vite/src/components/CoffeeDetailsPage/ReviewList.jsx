@@ -15,14 +15,14 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
   // console.log(sessionUser)
 
   // console.log(reviews)
-  if (!reviews?.length) {
-    return (
-      <h2>No Reviews Yet!</h2>
-    )
-  }
+  // if (!reviews?.length) {
+  //   return (
+  //     <h2>No Reviews Yet!</h2>
+  //   )
+  // }
 
   const calculateAvgRating = (reviews) => {
-    const totalStars = reviews.reduce((sum, review) => sum + review.stars, 0);
+    const totalStars = reviews?.reduce((sum, review) => sum + review.stars, 0);
     const avgRating = (totalStars / reviews.length).toFixed(1);
     return avgRating;
   };
@@ -58,7 +58,7 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
     <div className="review-list-whole">
       <div className="review-list-summary">
         <h2>Ratings and reviews</h2>
-        <p id="review-list-avg-big">{calculateAvgRating(reviews)}</p>
+        <p id="review-list-avg-big">{reviews.length ? calculateAvgRating(reviews) : 'No Reviews'}</p>
 
         <div className="review-list-avg-stars">{starIconDisplay(calculateAvgRating(reviews))}</div>
       </div>
@@ -66,7 +66,11 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
 
 
       <div className="review-details">
-        <h3>All Reviews ({reviews.length})</h3>
+        {reviews ?
+        (<h3>All Reviews ({reviews.length})</h3>) 
+        :
+          (<h2>No Reviews Yet!</h2>)
+        }
 
         <ul>
           {
