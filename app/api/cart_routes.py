@@ -24,7 +24,7 @@ def change_pending():
     '''
     change status of cart from pending false to true
     '''
-    curr_cart = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.pending == True).first()
+    curr_cart = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.pending.is_(True)).first()
     curr_cart.pending = False
     new_cart = Cart(user_id = current_user.id, pending=True)
     db.session.add(new_cart)
