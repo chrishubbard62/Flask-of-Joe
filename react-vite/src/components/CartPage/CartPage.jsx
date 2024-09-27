@@ -3,6 +3,8 @@ import { getCartItemsThunk, getCartThunk, submitCartThunk } from "../../redux/ca
 import { useEffect } from "react"
 import { getCoffeesThunk } from "../../redux/coffee"
 import CartItem from "./CartItem"
+import "./CartPage.css";
+
 
 export default function CartPage() {
   const dispatch = useDispatch()
@@ -31,7 +33,7 @@ export default function CartPage() {
     dispatch(submitCartThunk())
   }
   return (
-    <div>
+    <div className="cart-page-whole">
       {cartCoffees.map((coffee) => {
         // console.log(coffee)
         return (<CartItem key={coffee.id} coffee={coffee} data={data} cartItems={cartItems} />)

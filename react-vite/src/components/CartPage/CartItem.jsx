@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteCartItemThunk, updateCartItemThunk } from "../../redux/cart";
+import "./CartPage.css";
 
 const CartItem = ({coffee, data, cartItems}) => {
     // console.log(data)
@@ -26,7 +27,7 @@ const CartItem = ({coffee, data, cartItems}) => {
     }
 
     return (
-        <div>
+        <div className="cart-item-whole">
             <img style={{height: '100px'}}src={coffee.coffeeImages[0].url} />
             <div>{coffee.name}</div>
             <div>{coffee.price}</div>
