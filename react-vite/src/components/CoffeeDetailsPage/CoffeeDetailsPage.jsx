@@ -24,6 +24,7 @@ function CoffeeDetailsPage() {
   const userCart = useSelector((state) => state.cart);
   const userCartId = userCart.id;
   const navigate = useNavigate();
+  const sessionUser = useSelector((state) => state.session.user);
 
   //!-------------------Luna-------------------
   const [isOpen, setIsOpen] = useState(false);
@@ -103,9 +104,9 @@ function CoffeeDetailsPage() {
                     className="coffee-detail-page-preview-img"
                   />
                   <button
-                    className="coffee-detail-page-imgs-fav-button"
+                    className={sessionUser === null ? "fav-disabled-button" : "coffee-detail-page-imgs-fav-button"}
                     onClick={() => handleFavButtonClick(coffeeId)}
-                  >{isFav ? <FontAwesomeIcon icon={solidFaHeart} />
+                  >{isFav ? <FontAwesomeIcon icon={solidFaHeart} className="coffee-detail-red-heart"/>
                       : <FontAwesomeIcon icon={regularFaHeart} />}
                   </button>
                 </div>
