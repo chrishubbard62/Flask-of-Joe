@@ -13,8 +13,9 @@ const CartItem = ({coffee, data, cartItems}) => {
     }
 
 
-    // useEffect(()=>{
-    // },[data])
+    useEffect(()=>{
+        setQuantity(data[coffee.id])
+    }, [data, coffee.id])
     // console.log(cartItem)
 
     const confirm = () => {
