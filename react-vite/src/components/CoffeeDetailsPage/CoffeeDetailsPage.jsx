@@ -88,6 +88,8 @@ function CoffeeDetailsPage() {
       .then(navigate('/cart'))
   }
 
+
+
   return (
     <div className="coffee-detail-page-whole">
 
@@ -124,7 +126,10 @@ function CoffeeDetailsPage() {
             <h3>Roast: {roast}</h3>
           </div>
 
-          <button onClick={addToCart}>Add to Cart</button>
+          {sessionUser.id === coffee.ownerId ? 
+          <p>You are the owner of this coffee!</p>
+          :
+          (<button onClick={addToCart}>Add to Cart</button>)}
 
           <div className="coffee-detail-page-owner-desc">
             <div className="coffee-detail-page-toggle-block" onClick={() => setIsOpen(!isOpen)}>
