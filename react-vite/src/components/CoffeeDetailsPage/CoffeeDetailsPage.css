@@ -51,7 +51,7 @@
 }
 
 .coffee-detail-page-right button {
-  background-color: white;
+  background-color: #D7AC7F;
   border: 1px, solid, black;
   height: 30px;
   cursor: pointer;
@@ -97,7 +97,3 @@
 .fav-disabled-button {
   display: none;
 }
-
-
-
-
