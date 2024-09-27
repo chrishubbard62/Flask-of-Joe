@@ -25,6 +25,9 @@ const ManageCoffee = () => {
 
     if (!user) return <h1>loading...</h1>
     if (!newUserCoffees) return <h1>loading...</h1>
+    const handleNav = (coffeeId) => {
+        navigate(`/coffees/${coffeeId}/edit`)
+    }
 
 
     return (
@@ -47,6 +50,7 @@ const ManageCoffee = () => {
                             <OpenModalButton
                                 buttonText='delete coffee'
                                 modalComponent={<DeleteCoffeeModal coffee={coffee} />} />
+                                <button onClick={()=>handleNav(coffee.id)}>update</button>
                         </div>
                     )
                 }) : <>
