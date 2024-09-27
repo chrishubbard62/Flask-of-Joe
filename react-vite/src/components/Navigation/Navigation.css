@@ -61,7 +61,8 @@
   top: 20px;
   background-color: white;
   gap:7px;
-  width: 120px;
+  width: fit-content;
+  min-width: 120px;
 }
 
 .nav-bar-profile-button {
@@ -123,6 +124,10 @@
 
 .profile-drop-down-login-signup li{
   cursor: pointer;
+}
+
+.profile-drop-down-login-signup {
+  right: 10px;
 }
 
 

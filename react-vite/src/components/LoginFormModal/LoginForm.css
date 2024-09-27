@@ -10,5 +10,28 @@
 }
 
 .profile-login-modal {
-  width: 20%;
+  width: fit-content;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.login-modal-errors {
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.login-modal-whole input {
+  margin-left: 5px;
+  height: 20px;
+}
+
+.login-modal-whole button {
+  background-color: white;
+  border: 1px, solid, black;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 3px;
+  width: 100%;
+  margin-top: 20px;
 }

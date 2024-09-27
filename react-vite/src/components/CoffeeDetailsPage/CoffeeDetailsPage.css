@@ -90,6 +90,14 @@
   justify-content: center;
 }
 
+.coffee-detail-red-heart {
+  color: #B50330;
+}
+
+.fav-disabled-button {
+  display: none;
+}
+
 
 
 
