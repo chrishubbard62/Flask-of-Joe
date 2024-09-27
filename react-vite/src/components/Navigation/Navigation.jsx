@@ -4,7 +4,7 @@ import "./Navigation.css";
 import coffeeCup from '/coffeeCup.jpg';
 import { FaCartShopping } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
-import { GiCoffeeBeans, GiCoffeePot } from "react-icons/gi";
+import { GiCoffeeBeans } from "react-icons/gi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from "react-redux";
