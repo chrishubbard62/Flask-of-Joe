@@ -14,9 +14,6 @@ export default function CartPage() {
   const coffeeIds = Object.keys(data)
   const coffeeArr = Object.values(coffees)
 
-  const cartCoffees = coffeeArr.filter(coffee => coffeeIds.includes(coffee.id.toString()))
-
-
   useEffect(() => {
     dispatch(getCartThunk())
     dispatch(getCoffeesThunk())
@@ -26,6 +23,7 @@ export default function CartPage() {
   }, [dispatch, data.id])
 
   if (!data || !cartItems || !coffees) return <h1>loading...</h1>
+  const cartCoffees = coffeeArr.filter(coffee => coffeeIds.includes(coffee.id.toString()))
 
   const handleCheckout = () => {
     dispatch(submitCartThunk())
