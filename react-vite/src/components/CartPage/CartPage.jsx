@@ -14,7 +14,7 @@ export default function CartPage() {
   const coffeeIds = Object.keys(data)
   const coffeeArr = Object.values(coffees)
 
-  const cartCoffees = coffeeArr?.filter(coffee => coffeeIds.includes(coffee.id.toString()))
+  const cartCoffees = coffeeArr?.filter(coffee => coffeeIds.includes(coffee?.id.toString()))
 
   useEffect(() => {
     dispatch(getCartThunk())
