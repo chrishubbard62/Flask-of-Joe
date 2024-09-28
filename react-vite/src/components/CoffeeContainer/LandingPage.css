@@ -8,8 +8,8 @@
 
 .banner-image {
   height: 25rem;
-  width: 66%;
-  max-width: 62.5rem;
+  width: 100%;
+  max-width: 82.75rem;
   border-radius: .6rem;
 }
 
@@ -51,7 +51,25 @@
 
 .coffee-card-link:hover {
   background-color: #b6b19c;
-  
+
   border-radius: .6rem;
   transform: scale(1.05);
+}
+
+@media screen and (max-width: 85.5rem) {
+  .landing-coffee-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 63.5rem) {
+  .landing-coffee-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 42.5rem) {
+  .landing-coffee-container {
+    grid-template-columns: 1fr;
+  }
 }
