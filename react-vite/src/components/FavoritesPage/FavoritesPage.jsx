@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as favoritesActions from '../../redux/favorites';
 import './FavoritesPage.css';
-import { FaSearch } from "react-icons/fa";
+// import { FaSearch } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
 const FavoritesPage = () => {
@@ -23,14 +23,13 @@ const FavoritesPage = () => {
         <div>
             <div className='your-favs-second-nav'>
                 <div className='left-nav-area'>
-                    <img style={{ height: '100px', width: '100px' }} />
                     <h3>Your Favorites</h3>
                 </div>
             </div>
-            <div className='search-bar-area'>
+            {/* <div className='search-bar-area'>
                 <input className='search-input' type='search' placeholder='Search your favorites' />
                 <FaSearch className='favorites-search-icon' />
-            </div>
+            </div> */}
 
             <div className='div-card-container'>
                 {favs && favs.map(fav => {
@@ -40,8 +39,6 @@ const FavoritesPage = () => {
                             <div>
                                 <div>{fav.coffee.name}</div>
                                 <div>{fav.coffee.price}</div>
-                                <button>Add to cart</button>
-
                             </div>
                         </div>
                     )

@@ -8,3 +8,17 @@ button {
   border-radius: 5px;
   /* color: white; */
 }
+
+
+* {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: ; */
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+p {
+  font-size: 1.2rem;
+}

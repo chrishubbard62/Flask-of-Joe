@@ -109,12 +109,11 @@ function CoffeeFormPage({ newCoffee }) {
   }, [id])
 
   const autoFill = () => {
-  setName('random coffee')
+  setName('Lab grown beans')
   setPrice(19.99)
-  SetDescription('The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal.')
+  SetDescription('This is my brand new coffee! Home grown in my state of the art lab to bring out the best flavor!')
   setRoast('Medium')
   setRegion('silly goose town')
-  // setImage()
   }
 
   if (!newCoffee && user?.id !== coffee?.ownerId) {
