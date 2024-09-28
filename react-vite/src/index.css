@@ -2,3 +2,9 @@
 body {
   background-color: #f2eedc;
 }
+
+button {
+  background-color: #D7AC7F;
+  border-radius: 5px;
+  /* color: white; */
+}

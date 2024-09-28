@@ -126,10 +126,10 @@ function CoffeeDetailsPage() {
             <h3>Roast: {roast}</h3>
           </div>
 
-          {sessionUser.id === coffee.ownerId ? 
+          {sessionUser && sessionUser.id === coffee.ownerId ?
           <p>You are the owner of this coffee!</p>
           :
-          (<button onClick={addToCart}>Add to Cart</button>)}
+          (<button onClick={addToCart} disabled={!sessionUser}>Add to Cart</button>)}
 
           <div className="coffee-detail-page-owner-desc">
             <div className="coffee-detail-page-toggle-block" onClick={() => setIsOpen(!isOpen)}>
