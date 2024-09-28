@@ -32,7 +32,6 @@ function CoffeeFormPage({ newCoffee }) {
       await dispatch(getCoffeeThunk(id))
     }
     if(!newCoffee) getCoffee()
-
   }, [dispatch, id, newCoffee])
 
   useEffect(() => {
