@@ -22,7 +22,7 @@ function CoffeeDetailsPage() {
   const reviewsObj = useSelector((state) => state.review);
   const reviews = Object.values(reviewsObj);
   const userCart = useSelector((state) => state.cart);
-  const userCartId = userCart.id;
+  const userCartId = userCart?.id;
   const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -68,7 +68,6 @@ function CoffeeDetailsPage() {
   }
 
   const { coffeeImages, description, name, owner, price, region, roast } = coffee;
-  // console.log(coffeeImages[0].id, coffeeImages[0].url, coffeeImages)
 
   const handleFavButtonClick = (id) => {
     //------------------------lalo-------------------------
