@@ -31,8 +31,8 @@ function CoffeeFormPage({ newCoffee }) {
     async function getCoffee() {
       await dispatch(getCoffeeThunk(id))
     }
-    getCoffee()
-  }, [dispatch, id])
+    if(!newCoffee) getCoffee()
+  }, [dispatch, id, newCoffee])
 
   useEffect(() => {
     if (coffee) {
@@ -43,6 +43,16 @@ function CoffeeFormPage({ newCoffee }) {
       setRegion(coffee.region)
     }
   }, [coffee])
+
+  useEffect(() => {
+    if(newCoffee) {
+      setName('')
+      setPrice(0.00)
+      SetDescription('')
+      setRoast('Select-A-Roast')
+      setRegion('')
+    }
+  }, [newCoffee])
 
 
   useEffect(() => {
