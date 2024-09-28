@@ -16,5 +16,10 @@ export default function BeanBreak() {
                                     <GiCoffeeBeans/><GiCoffeeBeans/>
                                     <GiCoffeeBeans/><GiCoffeeBeans/>
                                     <GiCoffeeBeans/><GiCoffeeBeans/>
-                                    <GiCoffeeBeans/><GiCoffeeBeans/></>}</p>
+                                    <GiCoffeeBeans/><GiCoffeeBeans/>
+                                    <GiCoffeeBeans/><GiCoffeeBeans/>
+                                    <GiCoffeeBeans/><GiCoffeeBeans/>
+                                    <GiCoffeeBeans/><GiCoffeeBeans/>
+                                    <GiCoffeeBeans/><GiCoffeeBeans/>
+                                    <GiCoffeeBeans/></>}</p>
 }

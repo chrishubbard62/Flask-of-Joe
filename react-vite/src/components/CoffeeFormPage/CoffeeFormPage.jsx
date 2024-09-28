@@ -31,7 +31,7 @@ function CoffeeFormPage({ newCoffee }) {
     async function getCoffee() {
       await dispatch(getCoffeeThunk(id))
     }
-    if(!newCoffee) getCoffee()
+    if (!newCoffee) getCoffee()
   }, [dispatch, id, newCoffee])
 
   useEffect(() => {
@@ -41,16 +41,18 @@ function CoffeeFormPage({ newCoffee }) {
       SetDescription(coffee.description)
       setRoast(coffee.roast)
       setRegion(coffee.region)
+
     }
   }, [coffee])
 
   useEffect(() => {
-    if(newCoffee) {
+    if (newCoffee) {
       setName('')
       setPrice(0.00)
       SetDescription('')
       setRoast('Select-A-Roast')
       setRegion('')
+      setDisabled(false)
     }
   }, [newCoffee])
 
@@ -119,11 +121,11 @@ function CoffeeFormPage({ newCoffee }) {
   }, [id])
 
   const autoFill = () => {
-  setName('Lab grown beans')
-  setPrice(19.99)
-  SetDescription('This is my brand new coffee! Home grown in my state of the art lab to bring out the best flavor!')
-  setRoast('Medium')
-  setRegion('silly goose town')
+    setName('Lab grown beans')
+    setPrice(19.99)
+    SetDescription('This is my brand new coffee! Home grown in my state of the art lab to bring out the best flavor!')
+    setRoast('Medium')
+    setRegion('silly goose town')
   }
 
   if (!newCoffee && user?.id !== coffee?.ownerId) {
@@ -148,17 +150,20 @@ function CoffeeFormPage({ newCoffee }) {
             {submitted ? <p className="errors">{valErrors.name}</p> : <BeanBreak />}
           </div>
           <div className="form-div">
-            <p> Give a short description of your coffee <br />
+            <p className="form-coffee-description"> Give a short description of your coffee
               (this might include flavor profiles or
               other interesting facts about
               your product!)
             </p>
-            <textarea
-              name="description"
-              placeholder="Description"
-              value={description}
-              onChange={(e) => SetDescription(e.target.value)}
-            />
+            <div className="form-text-area-container">
+              <textarea
+                name="description"
+                placeholder="Description"
+                value={description}
+                onChange={(e) => SetDescription(e.target.value)}
+              />
+            </div>
+
             {submitted ? <p className="errors">{valErrors.description}</p> : <BeanBreak />}
           </div>
           <div className="form-div">
@@ -199,7 +204,7 @@ function CoffeeFormPage({ newCoffee }) {
             <div className='inner-picture-div'>
               <div>
                 <p>Choose an image for your coffee</p>
-                {disabled && <p>File uploads are disabled for demo-coffees if you would like to test image updates please create a new coffee!</p>}
+                {disabled && <p className="form-alert">File uploads are disabled for demo-coffees if you would like to test image updates please create a new coffee!</p>}
 
                 <input
                   disabled={disabled}
@@ -210,14 +215,14 @@ function CoffeeFormPage({ newCoffee }) {
 
               </div>
               <div className="picture-container">
-              {image && <img src={URL.createObjectURL(image)} alt="preview" className='form-image-container' style={{ height: '5rem' }} />}
+                {image && <img src={URL.createObjectURL(image)} alt="preview" className='form-image-container' style={{ height: '5rem' }} />}
               </div>
             </div>
             {submitted && newCoffee ? <p className="errors">{valErrors.image}</p> : <BeanBreak />}
           </div>
-          {newCoffee ? <button onClick={handleSubmit}>Create Coffee</button> : <button onClick={handleUpdate}>Update Coffee</button>}
+          {newCoffee ? <button className="bottom-button" onClick={handleSubmit}>Create Coffee</button> : <button className="bottom-button" onClick={handleUpdate}>Update Coffee</button>}
         </form>
-          {newCoffee ? <button onClick={autoFill}> auto fill</button> : null}
+        {newCoffee && <button onClick={autoFill}> auto fill</button>}
       </div>
     </div>
   )
