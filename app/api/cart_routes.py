@@ -11,10 +11,10 @@ def get_cart():
     '''
     get the cart for the current user
     '''
-    cart = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.pending == 1).first()
-    print('\n\n',cart,'\n\n')
+    cart = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.pending.is_(True)).first()
+
     if not cart:
-        return {"errrors":"Cannot find this cart"},404
+        return {"errors":"Cannot find this cart"},404
     return cart.to_dict()
 
 
