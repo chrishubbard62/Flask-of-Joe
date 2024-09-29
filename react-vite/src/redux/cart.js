@@ -161,7 +161,11 @@ export default function cartReducer(state=initialState, action) {
     }
     case DELETE_CART_ITEM: {
       const newState = {...state};
+      console.log(action.payload.id)
       delete newState[action.payload.id]
+      let newCartItems = newState.cartItems?.filter(
+        item => item.coffeeId !== action.payload.id);
+      newState.cartItems = newCartItems;
       return newState;
     }
     case GET_CART_ITEMS:{

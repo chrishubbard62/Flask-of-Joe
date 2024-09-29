@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { deleteCartItemThunk, updateCartItemThunk } from "../../redux/cart";
 import "./CartPage.css";
 
-const CartItem = ({coffee, data, cartItems}) => {
+const CartItem = ({coffee, data, cartItems, calculateTotal}) => {
     // console.log(data)
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(data[coffee.id] || 1);
@@ -16,6 +16,7 @@ const CartItem = ({coffee, data, cartItems}) => {
 
     useEffect(()=>{
         setQuantity(data[coffee.id])
+        calculateTotal(data)
     }, [data, coffee.id])
     // console.log(cartItem)
 
@@ -28,13 +29,28 @@ const CartItem = ({coffee, data, cartItems}) => {
 
     return (
         <div className="cart-item-whole">
-            <img style={{height: '100px'}}src={coffee.coffeeImages[0].url} />
-            <div>{coffee.name}</div>
-            <div>{coffee.price}</div>
-            <div >current quantity: {data[coffee.id]}</div>
-            <input type='number' value={quantity} onChange={(e)=>setQuantity(e.target.value)}></input>
-            <button onClick={confirm}>confirm quantity</button>
-            <button onClick={handleDelete}>delete</button>
+            <img src={coffee.coffeeImages[0].url} />
+
+
+
+            <div className="cart-item-right-info">
+                <div className="cart-item-name-price">
+                    <h2>{coffee.name}</h2>
+                    
+                </div>
+
+                <div className="cart-item-quantity">
+                    <p>current quantity: {data[coffee.id]}</p>
+                    <input type='number' value={quantity} onChange={(e) => setQuantity(e.target.value)}></input>
+                    <button onClick={confirm}>confirm quantity</button>
+                    <button onClick={handleDelete}>delete</button>
+                </div>
+            </div>
+
+            <div className="cart-item-price">
+                <h2>$ {coffee.price}</h2>
+            </div>
+
         </div>
     )
 }
