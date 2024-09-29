@@ -5,7 +5,7 @@ import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { GiCoffeePot } from "react-icons/gi";
+import { GiCoffeePot, GiCoffeeBeans } from "react-icons/gi";
 import { NavLink, useNavigate } from "react-router-dom";
 
 
@@ -59,6 +59,10 @@ function ProfileButton() {
               <li onClick={() => navigate('/users-coffee')}>
                 <NavLink to="/users-coffee" className='no-text-style'>Manage Coffee </NavLink>
                 <GiCoffeePot />
+              </li>
+              <li onClick={() => navigate('/coffees/new')} className="nav-bar-new-img-text">
+                <NavLink to="/coffees/new" className='no-text-style nav-bar-new-text'> Create New </NavLink>
+                <GiCoffeeBeans />
               </li>
               <li>
                 <button onClick={logout} className="profile-drop-down-logout">Log Out</button>

@@ -27,13 +27,13 @@ function Navigation() {
         </button>
       </div>
 
-      <div className="nav-bar-new-block">
+      {/* <div className="nav-bar-new-block">
         {user &&
           (<div onClick={() => navigate('/coffees/new')} className="nav-bar-new-img-text">
             <NavLink to="/coffees/new" className='no-text-style nav-bar-new-text'> Create New </NavLink>
             <GiCoffeeBeans className="nav-bar-icons" />
           </div>)}
-      </div>
+      </div> */}
 
       <div className="nav-bar-right-side">
         <div className="no-bullets-li">
