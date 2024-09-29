@@ -85,4 +85,9 @@
 .cart-page-cart-total > button {
   height: 50px;
   font-size: 1.3em;
+  cursor: pointer;
+}
+
+.cart-item-whole button {
+  cursor: pointer;
 }

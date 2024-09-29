@@ -120,7 +120,7 @@ function CoffeeDetailsPage() {
         <div className="coffee-detail-page-right">
           <div className="coffee-detail-page-general-info">
             <h1 id="coffee-detail-page-product-name">{name}</h1>
-            <h2>$ {price}</h2>
+            <h2>$ {price.toFixed(2)}</h2>
             <h3>Region: {region}</h3>
             <h3>Roast: {roast}</h3>
           </div>

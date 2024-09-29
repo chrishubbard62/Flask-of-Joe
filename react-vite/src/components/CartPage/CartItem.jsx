@@ -48,7 +48,7 @@ const CartItem = ({coffee, data, cartItems, calculateTotal}) => {
             </div>
 
             <div className="cart-item-price">
-                <h2>$ {coffee.price}</h2>
+                <h2>$ {coffee.price.toFixed(2)}</h2>
             </div>
 
         </div>

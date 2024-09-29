@@ -29,7 +29,7 @@ export default function CartPage() {
         price += itemQuantity * itemPrice;
       }
     });
-    setSubtotal(price);
+    setSubtotal(price.toFixed(2));
   }
 
   useEffect(() => {
