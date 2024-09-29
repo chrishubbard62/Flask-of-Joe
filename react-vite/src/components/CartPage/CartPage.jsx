@@ -52,7 +52,7 @@ export default function CartPage() {
     <div className="cart-page-whole">
       <h1>{cartCoffees.length} Item(s) in your cart</h1>
 
-    {cartCoffees?.length > 0 ? 
+    {cartCoffees?.length > 0 ?
     <div className="cart-page-item-subtotal">
       <div className="cart-page-cart-items">
         {cartCoffees.map((coffee) => {
@@ -64,13 +64,13 @@ export default function CartPage() {
         <h2>CART TOTALS</h2>
           <div className="cart-page-cart-subtotal">
             <h3>Subtotal</h3>
-            <p>{subtotal}</p>
+            <p>${subtotal}</p>
         </div>
         <button onClick={handleCheckout}>checkout</button>
       </div>
     </div>
     : <div></div>}
-     
+
     </div>
   )
 }
