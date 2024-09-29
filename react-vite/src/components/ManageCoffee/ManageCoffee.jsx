@@ -12,7 +12,7 @@ const ManageCoffee = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const newUserCoffees = useSelector(state=>state.userCoffee)
-   
+
     const usersCoffees = Object.values(newUserCoffees);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const ManageCoffee = () => {
 
     return (
         <>
-            <h1>manage coffee</h1>
+            <h1 className='manage-coffee-banner'>manage coffee</h1>
             <div className='manage-coffee-card-container'>
                 {usersCoffees.length > 0 ? usersCoffees.map((coffee) => {
                     return (
@@ -52,8 +52,8 @@ const ManageCoffee = () => {
                         </div>
                     )
                 }) : <>
-                    <h2>Put your product up for sale!</h2>
-                    <button>Add a product</button>
+                    <h2 >Put your product up for sale!</h2>
+                    <button className='manage-coffee-button' onClick={() => navigate('/coffees/new')}>Add a product</button>
                 </>}
             </div>
         </>
