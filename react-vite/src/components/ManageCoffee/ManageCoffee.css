@@ -38,3 +38,13 @@
         width: 49%;
     }
 }
+
+.manage-coffee-banner {
+    text-align: center;
+}
+
+.manage-coffee-button:hover {
+    cursor: pointer;
+}
+
+

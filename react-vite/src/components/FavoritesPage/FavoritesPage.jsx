@@ -38,7 +38,7 @@ const FavoritesPage = () => {
                             <img className='favorite-coffees-image' src={fav.coffee.coffeeImages[0].url} alt='image of coffee product' />
                             <div>
                                 <div>{fav.coffee.name}</div>
-                                <div>{fav.coffee.price}</div>
+                                <div>${fav.coffee.price.toFixed(2)}</div>
                             </div>
                         </div>
                     )
