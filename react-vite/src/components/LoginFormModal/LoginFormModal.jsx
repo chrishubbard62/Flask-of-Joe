@@ -27,13 +27,18 @@ function LoginFormModal() {
       closeModal();
     }
   };
+  const demoLogin = (e) => {
+    e.preventDefault;
+    setEmail('demo@aa.io')
+    setPassword('password')
+  }
 
   return (
     <div className="login-modal-whole">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email 
+          Email
           <input
             type="text"
             value={email}
@@ -56,6 +61,7 @@ function LoginFormModal() {
 
         {errors.password && <p className="login-modal-errors">{errors.password}</p>}
         <button type="submit">Log In</button>
+        <button onClick={demoLogin}>Login as Demo User</button>
       </form>
     </div>
   );

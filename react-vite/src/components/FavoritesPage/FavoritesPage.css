@@ -15,24 +15,29 @@
     display: flex;
     align-items: center;
 }
-.search-input{
+/* .search-input{
     height: 48px;
     border: 1px solid lightgrey;
     border-radius: 26px;
     font-size: 17px;
     text-indent: 15px;
     width: 100%
-}
+} */
 
-.favorites-search-icon{
+/* .favorites-search-icon{
     position: relative;
     right: 30px;
-}
+} */
+ /* #div-for-centering{
+    margin: auto;
+ } */
 .div-card-container{
     /* border: 2px green solid; */
     display: flex;
     gap: 5px;
+    justify-content: center;
 }
+
 .coffee-card-favs{
     border: 1px lightgrey solid;
     border-radius: 10px;

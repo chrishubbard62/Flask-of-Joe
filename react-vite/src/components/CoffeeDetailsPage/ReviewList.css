@@ -82,7 +82,7 @@
 
 
 .make-review-button button {
-  background-color: white;
+  background-color: #d7ac7f;
   border: 1px, solid, black;
   height: 30px;
   cursor: pointer;
@@ -90,7 +90,7 @@
 }
 
 .delete-review-button button {
-  background-color: white;
+  background-color: #d7ac7f;
   border: 1px, solid, black;
   height: 30px;
   cursor: pointer;
