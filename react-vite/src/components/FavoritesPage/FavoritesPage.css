@@ -3,11 +3,15 @@
 .your-favs-second-nav{
     /* border: 2px solid black; */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 5px;
+}
+.title-favs {
+    text-align: center;
 }
 .left-nav-area{
     display: flex;
+    justify-content: center;
 }
 .search-bar-area{
     /* border: 2px purple solid; */

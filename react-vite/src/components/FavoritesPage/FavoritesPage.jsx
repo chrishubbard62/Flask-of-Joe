@@ -22,20 +22,18 @@ const FavoritesPage = () => {
     return (
         <div>
             <div className='your-favs-second-nav'>
-                <div className='left-nav-area'>
-                    <h3>Your Favorites</h3>
-                </div>
+                <h2 className='title-favs'>Your Favorites</h2>
             </div>
             {/* <div className='search-bar-area'>
                 <input className='search-input' type='search' placeholder='Search your favorites' />
                 <FaSearch className='favorites-search-icon' />
             </div> */}
 
-            
+
             <div className='div-card-container'>
                 {favs && favs.map(fav => {
                     return (
-                        <div key={fav.id} className='coffee-card-favs' onClick={()=>navigate(`/coffees/${fav.coffeeId}`)}>
+                        <div key={fav.id} className='coffee-card-favs' onClick={() => navigate(`/coffees/${fav.coffeeId}`)}>
                             <img className='favorite-coffees-image' src={fav.coffee.coffeeImages[0].url} alt='image of coffee product' />
                             <div>
                                 <div>{fav.coffee.name}</div>
