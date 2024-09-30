@@ -1,0 +1,12 @@
+.purchase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+.coffee-cup {
+  width: 30%;
+  border: 1px solid #D7AC7F;
+  border-radius: 1.5rem;
+}

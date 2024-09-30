@@ -4,10 +4,11 @@ import { useEffect, useState } from "react"
 import { getCoffeesThunk } from "../../redux/coffee"
 import CartItem from "./CartItem"
 import "./CartPage.css";
-
+import { useNavigate } from "react-router-dom"
 
 export default function CartPage() {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const data = useSelector(state => state.cart)
   const cartItems = useSelector(state => state.cart.cartItems)
   const coffees = useSelector(state => state.coffee)
@@ -46,6 +47,7 @@ export default function CartPage() {
 
   const handleCheckout = () => {
     dispatch(submitCartThunk())
+    navigate('/purchase')
   }
 
   return (

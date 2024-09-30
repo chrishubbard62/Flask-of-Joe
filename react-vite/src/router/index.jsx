@@ -8,6 +8,7 @@ import FavoritesPage from '../components/FavoritesPage/FavoritesPage';
 import CoffeeDetailsPage from '../components/CoffeeDetailsPage/CoffeeDetailsPage';
 import ManageCoffee from '../components/ManageCoffee/ManageCoffee';
 import CartPage from '../components/CartPage';
+import PurchasePage from '../components/PurchasePage/PurchasePage';
 
 
 export const router = createBrowserRouter([
@@ -32,14 +33,10 @@ export const router = createBrowserRouter([
         element: <CartPage />
       },
 //? ///////////////////////////////////////////////////// chris //////////////////////
-      // {
-      //   path: "coffees/new",
-      //   element: <CoffeeFormPage newCoffee={true}/>
-      // },
-      // {
-      //   path: 'coffees/:id/edit',
-      //   element: <CoffeeFormPage newCoffee={false}/>
-      // },
+      {
+        path: "purchase",
+        element: <PurchasePage />
+      },
 //? ///////////////////////////////////////////////////// chris ///////////////////////
 //!----------------------Luna---------------------------
       {
