@@ -11,11 +11,11 @@ export default function CartPage() {
   const data = useSelector(state => state.cart)
   const cartItems = useSelector(state => state.cart.cartItems)
   const coffees = useSelector(state => state.coffee)
-  const coffeeIds = Object.keys(data)
   const coffeeArr = Object.values(coffees)
   const [subtotal, setSubtotal] = useState(0);
+  const coffeeIds = cartItems?.map(item => item.coffeeId)
 
-  const cartCoffees = coffeeArr?.filter(coffee => coffeeIds.includes(coffee?.id.toString()))
+  const cartCoffees = coffeeArr?.filter(coffee => coffeeIds?.includes(coffee?.id))
 
   const calculateTotal = (data) => {
     let price = 0;
