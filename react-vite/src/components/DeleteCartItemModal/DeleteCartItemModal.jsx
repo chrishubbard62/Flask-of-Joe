@@ -17,8 +17,8 @@ const DeleteCartItemModal = ({ cartItemId }) => {
     return (
         <>
             <div className='cart-item-delete-container'>
-                <h2>Confirm Delete</h2>
-                <p>Are you sure you want to delete this Item?</p>
+                <h2 className="delete-cart-h2">Confirm Delete</h2>
+                <p className="delete-cart-p">Are you sure you want to delete this Item?</p>
 
                 <div>
                     <button

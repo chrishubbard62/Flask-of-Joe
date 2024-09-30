@@ -9,3 +9,8 @@
     display: flex;
     gap: 10px;
 }
+
+
+.delete-coffee-button {
+    cursor: pointer;
+}

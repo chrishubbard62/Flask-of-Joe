@@ -30,7 +30,7 @@ const ManageCoffee = () => {
 
     return (
         <>
-            <h1 className='manage-coffee-banner'>manage coffee</h1>
+            <h1 className='manage-coffee-banner'>Manage Coffee</h1>
             <div className='manage-coffee-card-container'>
                 {usersCoffees.length > 0 ? usersCoffees.map((coffee) => {
                     return (
@@ -45,16 +45,20 @@ const ManageCoffee = () => {
                                     <div>roast: {coffee.roast}</div>
                                 </div>
                             </div>
-                            <OpenModalButton
-                                buttonText='delete coffee'
-                                modalComponent={<DeleteCoffeeModal coffee={coffee} />} />
-                                <button onClick={()=>handleNav(coffee.id)}>update</button>
+
+                            <div className='manage-coffee-buttons'>
+                                <OpenModalButton
+                                    buttonText='Delete coffee'
+                                    modalComponent={<DeleteCoffeeModal coffee={coffee} />} />
+                                <button onClick={() => handleNav(coffee.id)}>Update</button>
+                            </div>
+
                         </div>
                     )
-                }) : <>
+                }) : <div className='manage-coffee-no-exsited-coffee'>
                     <h2 >Put your product up for sale!</h2>
                     <button className='manage-coffee-button' onClick={() => navigate('/coffees/new')}>Add a product</button>
-                </>}
+                </div>}
             </div>
         </>
     )

@@ -6,7 +6,8 @@
     align-items: center;
 }
 
-.cart-item-delete-container > p, h2{
+.delete-cart-h2,
+.delete-cart-p {
     text-align: center;
     margin: 5px;
     padding: 5px;
