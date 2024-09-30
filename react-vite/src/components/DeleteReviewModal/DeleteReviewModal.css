@@ -1,10 +1,11 @@
 .delete-review-modal {
   text-align: center;
+  margin: 10px;
 }
 
 .delete-review-modal button {
   margin-top: 20px;
-  background-color: white;
+  background-color: #d7ac7f;
   border: 1px solid black;
   height: 30px;
   width: 40%;

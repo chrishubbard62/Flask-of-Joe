@@ -63,7 +63,7 @@ function CoffeeDetailsPage() {
   },[coffee,reviews])
   //----------lalo----------------
 
-  if (!isLoaded ) {
+  if (!isLoaded ) { //coffee reviews
     return <h2>Loading...</h2>
   }
 

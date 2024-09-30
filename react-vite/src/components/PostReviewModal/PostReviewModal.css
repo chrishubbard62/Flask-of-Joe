@@ -1,4 +1,6 @@
-
+.post-review-frame{
+  margin: 10px;
+}
 .post-review-header {
   text-align: center;
 }
@@ -32,10 +34,9 @@
 
 .post-review-inside-button {
   margin-top: 20px;
-  background-color: white;
+  background-color: #d7ac7f;
   border: 1px solid black;
   height: 30px;
   cursor: pointer;
   border-radius: 3px;
 }
-

@@ -2,6 +2,7 @@
     /* border: 2px green solid; */
     display: flex;
     gap: 5px;
+    justify-content: center;
 }
 
 .manage-coffee-card{
@@ -46,5 +47,3 @@
 .manage-coffee-button:hover {
     cursor: pointer;
 }
-
-

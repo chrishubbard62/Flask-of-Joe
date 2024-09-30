@@ -91,7 +91,6 @@
   background-color: white;
   border: none;
   position: relative;
-  z-index: 1;
   right: 33px;
   cursor: pointer;
 }
@@ -129,8 +128,3 @@
 .profile-drop-down-login-signup {
   right: 10px;
 }
-
-
-
-
-

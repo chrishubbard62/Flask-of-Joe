@@ -31,6 +31,7 @@ const FavoritesPage = () => {
                 <FaSearch className='favorites-search-icon' />
             </div> */}
 
+            
             <div className='div-card-container'>
                 {favs && favs.map(fav => {
                     return (
@@ -44,6 +45,7 @@ const FavoritesPage = () => {
                     )
                 })}
             </div>
+
         </div>
     )
 }

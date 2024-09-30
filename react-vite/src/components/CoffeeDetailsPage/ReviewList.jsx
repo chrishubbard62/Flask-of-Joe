@@ -67,7 +67,7 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
 
       <div className="review-details">
         {reviews ?
-        (<h3>All Reviews ({reviews.length})</h3>) 
+        (<h3>All Reviews ({reviews.length})</h3>)
         :
           (<h2>No Reviews Yet!</h2>)
         }
@@ -89,6 +89,7 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
                 >
                   <OpenModalButton
                     buttonText='Delete'
+                    modalClassName='delete-review-modal'
                     modalComponent={<DeleteReviewModal review={review} />}
                   />
                   </div>
