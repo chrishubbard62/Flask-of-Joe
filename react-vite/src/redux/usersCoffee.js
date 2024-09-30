@@ -47,7 +47,7 @@ const initialState = {};
 export default function userCoffeeReducer(state = initialState, action) {
     switch (action.type) {
         case GET_CURRENT_USER_COFFEES:
-            return { ...state, ...action.payload }
+            return { ...action.payload }
         case DELETE_COFFEE: {
             const newState = { ...state }
             delete newState[action.payload.coffeeId]
