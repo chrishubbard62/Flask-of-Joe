@@ -37,11 +37,11 @@ function CoffeeDetailsPage() {
   const [isFav, setIsFav] = useState(false);
 
 
-  const [ isLoaded, setIsLoaded ] = useState(false);
+  // const [ isLoaded, setIsLoaded ] = useState(false);
 
   useEffect(() => {
     dispatch(getCoffeeThunk(coffeeId))
-      .then(() => setIsLoaded(true))
+      // .then(() => setIsLoaded(true))
 
     dispatch(getReviewsThunk(coffeeId));
     dispatch(getCartThunk());
@@ -63,7 +63,7 @@ function CoffeeDetailsPage() {
   },[coffee,reviews])
   //----------lalo----------------
 
-  if (!isLoaded ) { //coffee reviews
+  if (!coffee || !reviews) { //coffee reviews
     return <h2>Loading...</h2>
   }
 
