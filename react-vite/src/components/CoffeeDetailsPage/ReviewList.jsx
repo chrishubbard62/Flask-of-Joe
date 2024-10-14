@@ -9,7 +9,9 @@ import { faStar as solidFaStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularFaStar } from '@fortawesome/free-regular-svg-icons';
 import { faStarHalfStroke } from '@fortawesome/free-solid-svg-icons';
 
-function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
+function ReviewList({ reviews, coffee }) {
+  // console.log('\n\n',coffee)
+  // console.log('\n\n',coffee.owner.id)
   const sessionUser = useSelector(state => state.session.user);
   // const dispatch = useDispatch();
   // console.log(sessionUser)
@@ -35,7 +37,7 @@ function ReviewList({ reviews, coffee, coffee: { owner: { id } } }) {
 
   const isDisabledReview = sessionUser === null
                             || sessionUser && !Object.values(sessionUser).length
-                            || id === sessionUser.id
+                            || coffee.ownerId === sessionUser.id
                             || reviews.find(review => review.userId === sessionUser.id
                                             && review.coffeeId === coffee.id
                                           )
