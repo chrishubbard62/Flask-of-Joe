@@ -153,6 +153,7 @@ function CoffeeDetailsPage() {
       <ReviewList
       reviews={reviews.filter((review)=>review.coffeeId === +coffeeId)}
       coffee={coffee}
+      // ownerId={coffee.ownerId}
       />
     </div>
   )
