@@ -59,7 +59,7 @@ function ReviewList({ reviews, coffee }) {
   return (
     <div className="review-list-whole">
       <div className="review-list-summary">
-        <h2>Ratings and reviews</h2>
+        <h3>Ratings and reviews</h3>
         <p id="review-list-avg-big">{reviews.length ? calculateAvgRating(reviews) : 'No Reviews'}</p>
 
         <div className="review-list-avg-stars">{starIconDisplay(calculateAvgRating(reviews))}</div>
@@ -69,7 +69,7 @@ function ReviewList({ reviews, coffee }) {
 
       <div className="review-details">
         {reviews ?
-        (<h3>All Reviews ({reviews.length})</h3>)
+        (<h4>All Reviews ({reviews.length})</h4>)
         :
           (<h2>No Reviews Yet!</h2>)
         }
@@ -82,8 +82,8 @@ function ReviewList({ reviews, coffee }) {
                 <p className="review-list-text">{review.review}</p>
 
                 <div className="review-list-name-date">
-                  <p id="review-list-username"> {review.User.username} </p>
-                  <p>{review.createdAt}</p>
+                  <p id="review-list-username" className="detail-page-p"> {review.User.username} </p>
+                  <p className="detail-page-p">{review.createdAt}</p>
                 </div>
 
                 <div
