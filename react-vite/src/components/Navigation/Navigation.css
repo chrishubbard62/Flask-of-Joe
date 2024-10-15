@@ -1,21 +1,37 @@
 .profile-dropdown {
-  position: absolute;
-  right: 30px;
+  position: absolute; 
   top: 25px;
+  right: 150px;
+}
+
+.button-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
 .nav-bar-the-real-bar{
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #d7ac7f;
+}
+
+.nav-bar-inside-block {
+  display: flex;
   justify-content: space-between;
-  border-bottom: 1px #ccc solid;
-  margin: auto 0px;
+  align-items: center;
+  width: 1324px;
 }
 
 .nav-bar-left-side{
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-left: 10px;
+}
+
+.nav-bar-left-side h1 {
+  margin: 0px;
 }
 
 .nav-bar-right-side > * {
@@ -23,11 +39,6 @@
   margin: 5px;
   gap: 10px;
   align-items: center;
-}
-
-.nav-bar-right-side {
-  display: flex;
-  margin-right: 10px;
 }
 
 .nav-bar-icon{
@@ -38,14 +49,18 @@
 
 .no-bullets-li{
   list-style: none;
+  display: flex;
+  align-items: center;
+  margin-top: 9px;
 }
+
 
 .no-text-style{
   text-decoration: none;
   color: black;
 }
 
-.user-drop-down{
+.user-drop-down {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,49 +70,34 @@
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: absolute;
-  margin-top: 1px;
   z-index: 100;
-  right: 40px;
-  top: 20px;
   background-color: white;
   gap:7px;
   width: fit-content;
   min-width: 130px;
 }
 
-.nav-bar-profile-button {
-  border: none;
-  background-color: #f2eedc;
-  cursor: pointer;
-}
-
-.nav-bar-search-container {
-  display: flex;
-  align-items: center;
-  width: 60%;
-}
-
-.nav-bar-search-input,
-.nav-bar-search-icon {
-  height: 40%;
-}
-
-.nav-bar-search-input {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.nav-bar-search-icon {
-  background-color: white;
-  border: none;
-  position: relative;
-  right: 33px;
-  cursor: pointer;
-}
-
 .nav-bar-icons {
   font-size: 30px;
   cursor: pointer;
+}
+
+.nav-bar-icon-buttons {
+  background-color: none;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 50%;
+  transition: background-color 0.1s;
+}
+
+.nav-bar-icon-buttons:hover {
+  background-color: #f2eedc;
 }
 
 .nav-bar-new-block {
@@ -127,4 +127,13 @@
 
 .profile-drop-down-login-signup {
   right: 10px;
+}
+
+#nav-bar-cart-icon {
+  font-size: 1.7rem;
+}
+
+.nav-bar-right-side {
+  display: flex;
+  align-items: center;
 }
