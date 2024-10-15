@@ -15,7 +15,9 @@
 
 .landing-outer-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .landing-coffee-container {
@@ -25,6 +27,25 @@
   margin-top: 2rem;
 }
 
+.coffee-landing-filters {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  margin-top: 5px;
+  width: 30%;
+}
+
+.filter-button {
+  width: 20rem;
+}
+
+.filter-button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: #f2eedc;
+}
+
+
 .landing-coffee-container a{
   text-decoration: none;
   color: black
@@ -33,7 +54,6 @@
 .landing-page-coffee-image {
   width: 20rem;
   border-radius: .6rem;
-
 }
 
 .coffee-card-info {
@@ -50,10 +70,9 @@
 }
 
 .coffee-card-link:hover {
-  background-color: #b6b19c;
-
   border-radius: .6rem;
-  transform: scale(1.05);
+  box-shadow: 5px 5px 5px grey, -2px 0 5px lightgrey;
+  transform: scale(1.01);
 }
 
 @media screen and (max-width: 85.5rem) {
