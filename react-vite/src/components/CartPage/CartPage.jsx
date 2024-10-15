@@ -50,9 +50,19 @@ export default function CartPage() {
     navigate('/purchase')
   }
 
+  const itemCaculator = (cartCoffees) => {
+    if (cartCoffees.length === 1) {
+      return `${cartCoffees.length} Item in your cart`
+    } else if (cartCoffees.length > 1) {
+      return `${cartCoffees.length} Items in your cart`
+    } else if (cartCoffees.length === 0) {
+      return `No Item in your cart`
+    }
+  }
+
   return (
     <div className="cart-page-whole">
-      <h2>{cartCoffees.length} Item(s) in your cart</h2>
+      <h2>{itemCaculator(cartCoffees)}</h2>
 
     {cartCoffees?.length > 0 ? (
       <div className="cart-page-item-subtotal">
