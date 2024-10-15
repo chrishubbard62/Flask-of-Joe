@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getCoffeesThunk } from '../../redux/coffee'
 import CoffeeCard from './CoffeeCard'
-import banner from '/banner.jpg'
 import './LandingPage.css'
 
 
@@ -21,7 +20,7 @@ function CoffeeContainer() {
   }, [data])
 
   const handleCategory = (type) => {
-    if(type === 'all') {
+    if (type === 'all') {
       setFiltered(coffees)
     } else {
       setFiltered(coffees.filter(coffee => coffee.roast === type))
@@ -33,16 +32,44 @@ function CoffeeContainer() {
   return (
     <div>
       <div className='banner-container'>
-        <img src={banner} alt="coffee banner" className='banner-image' />
+        <div className='banner-image'></div>
       </div>
-      <div className='landing-outer-container'>
+      <div className='landing-filters-outer'>
       <div className='coffee-landing-filters'>
-        <button  onClick={() => handleCategory('all')} className='filter-button'>All</button>
-        <button  onClick={() => handleCategory('Light')} className='filter-button'>Light</button>
-        <button  onClick={() => handleCategory('Medium')} className='filter-button'>Medium</button>
-        <button  onClick={() => handleCategory('Dark')} className='filter-button'>Dark</button>
-        <button  onClick={() => handleCategory('Espresso')} className='filter-button'>Espresso</button>
+          <div onClick={() => handleCategory('all')} className='filter-button'>
+            <img className='filter-button-img all' src="/coffeesquare.jpg" alt="beans" />
+            <div>
+              All
+            </div>
+          </div>
+          <div onClick={() => handleCategory('Light')} className='filter-button'>
+          <img className='filter-button-img light' src="/coffeesquare.jpg" alt="beans" />
+            <div>
+              Light
+            </div>
+          </div>
+          <div onClick={() => handleCategory('Medium')} className='filter-button'>
+          <img className='filter-button-img medium' src="/coffeesquare.jpg" alt="beans" />
+            <div>
+              Medium
+            </div>
+          </div>
+          <div onClick={() => handleCategory('Dark')} className='filter-button'>
+          <img className='filter-button-img dark' src="/coffeesquare.jpg" alt="beans" />
+            <div>
+              Dark
+            </div>
+          </div>
+          <div onClick={() => handleCategory('Espresso')} className='filter-button'>
+          <img className='filter-button-img espresso' src="/coffeesquare.jpg" alt="beans" />
+            <div>
+              Espresso
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div className='landing-outer-container'>
         <div className='landing-coffee-container'>
           {filtered?.map((coffee) => {
             return <CoffeeCard key={coffee?.id} coffee={coffee} />
