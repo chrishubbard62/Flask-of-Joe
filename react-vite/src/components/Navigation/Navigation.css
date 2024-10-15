@@ -4,6 +4,11 @@
   right: 150px;
 }
 
+.profile-dropdown-nouser {
+  position: absolute;
+  bottom: 0;
+}
+
 .button-wrapper {
   position: relative;
   display: inline-block;
