@@ -116,11 +116,12 @@ function CoffeeDetailsPage() {
           }
         </div>
 
+        <div></div>
 
         <div className="coffee-detail-page-right">
           <div className="coffee-detail-page-general-info">
-            <h1 id="coffee-detail-page-product-name">{name}</h1>
-            <h2>$ {price.toFixed(2)}</h2>
+            <h2 id="coffee-detail-page-product-name">{name}</h2>
+            <h3>$ {price.toFixed(2)}</h3>
             <h3>Region: {region}</h3>
             <h3>Roast: {roast}</h3>
           </div>
@@ -132,16 +133,16 @@ function CoffeeDetailsPage() {
 
           <div className="coffee-detail-page-owner-desc">
             <div className="coffee-detail-page-toggle-block" onClick={() => setIsOpen(!isOpen)}>
-              <h2>More Info</h2>
+              <h3>More Info</h3>
               <span className="coffee-detail-toggle-icons">{isOpen ? <FontAwesomeIcon icon={faCaretUp} />
                       : <FontAwesomeIcon icon={faCaretDown} />}</span>
             </div>
 
             {isOpen && (
               <div>
-                <h3>Owned By: {owner.username}</h3>
-                <h3>About this coffee:</h3>
-                <p>{description}</p>
+                <h4>Owned By: {owner.username}</h4>
+                <h4>About this coffee:</h4>
+                <p className="detail-page-p">{description}</p>
               </div>
             )}
 
