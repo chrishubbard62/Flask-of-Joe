@@ -52,26 +52,28 @@ export default function CartPage() {
 
   return (
     <div className="cart-page-whole">
-      <h1>{cartCoffees.length} Item(s) in your cart</h1>
+      <h2>{cartCoffees.length} Item(s) in your cart</h2>
 
-    {cartCoffees?.length > 0 ?
-    <div className="cart-page-item-subtotal">
-      <div className="cart-page-cart-items">
-        {cartCoffees.map((coffee) => {
-          return (<CartItem key={coffee.id} coffee={coffee} data={data} cartItems={cartItems} calculateTotal={calculateTotal} />)
-        })}
-      </div>
-
-      <div className="cart-page-cart-total">
-        <h2>CART TOTALS</h2>
-          <div className="cart-page-cart-subtotal">
-            <h3>Subtotal</h3>
-            <p>${subtotal}</p>
+    {cartCoffees?.length > 0 ? (
+      <div className="cart-page-item-subtotal">
+        <div className="cart-page-cart-items">
+          {cartCoffees.map((coffee) => {
+            return (<CartItem key={coffee.id} coffee={coffee} data={data} cartItems={cartItems} calculateTotal={calculateTotal} />)
+          })}
         </div>
-        <button onClick={handleCheckout}>checkout</button>
+
+        <div className="cart-page-cart-total">
+          <h2>CART TOTALS</h2>
+            <div className="cart-page-cart-subtotal">
+              <h3>Subtotal</h3>
+              <p>${subtotal}</p>
+          </div>
+          <button onClick={handleCheckout}>checkout</button>
+        </div>
       </div>
-    </div>
-    : <div></div>}
+      ) : (
+    <div></div>)
+    }
 
     </div>
   )
