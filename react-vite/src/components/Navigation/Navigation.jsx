@@ -4,9 +4,6 @@ import "./Navigation.css";
 import coffeeCup from '/coffeeCup.jpg';
 import { FaCartShopping } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
-import { GiCoffeeBeans } from "react-icons/gi";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from "react-redux";
 
 function Navigation() {
@@ -15,41 +12,33 @@ function Navigation() {
 
   return (
     <div className='nav-bar-the-real-bar'>
-      <div className="nav-bar-left-side" onClick={() => navigate('/')}>
-        <img src={coffeeCup} className="nav-bar-icon" />
-        <h1>Flask of Joe</h1>
-      </div>
+      <div className="nav-bar-inside-block">
+        <div className="nav-bar-left-side" onClick={() => navigate('/')}>
+          <img src={coffeeCup} className="nav-bar-icon" />
+          <h1>Flask of Joe</h1>
+        </div>
 
-      <div className="nav-bar-search-container">
-        <input type="text" className="nav-bar-search-input" placeholder="Feature coming soon..." />
-        <button className="nav-bar-search-icon">
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </button>
-      </div>
+        <div className="nav-bar-right-side">
+          <div className="no-bullets-li">
+            {user &&
+              (<li>
+                <button className="nav-bar-icon-buttons">
+                  <FaHeart onClick={() => navigate('/favorites')}     className='no-text-style nav-bar-icons nav-bar-heart-icon' />
+                </button>
 
-      {/* <div className="nav-bar-new-block">
-        {user &&
-          (<div onClick={() => navigate('/coffees/new')} className="nav-bar-new-img-text">
-            <NavLink to="/coffees/new" className='no-text-style nav-bar-new-text'> Create New </NavLink>
-            <GiCoffeeBeans className="nav-bar-icons" />
-          </div>)}
-      </div> */}
+              </li>)}
 
-      <div className="nav-bar-right-side">
-        <div className="no-bullets-li">
-          {user && 
-          (<li>
-            <FaHeart onClick={() => navigate('/favorites')} className='no-text-style nav-bar-icons nav-bar-heart-icon' />
-          </li>)}
+            <li className="nav-profile-button">
+                <ProfileButton className="nav-bar-icons" />
+            </li>
 
-          <li className="nav-profile-button">
-            <ProfileButton className="nav-bar-icons" />
-          </li>
-
-          {user && 
-          (<li onClick={() => navigate('/cart')}>
-            <FaCartShopping className="nav-bar-icons" />
-          </li>)}
+            {user &&
+              (<li onClick={() => navigate('/cart')}>
+                <button className="nav-bar-icon-buttons">
+                  <FaCartShopping className="nav-bar-icons" id='nav-bar-cart-icon' />
+                </button>
+              </li>)}
+          </div>
         </div>
       </div>
     </div>

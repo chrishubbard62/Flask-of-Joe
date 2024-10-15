@@ -46,8 +46,8 @@ function ProfileButton() {
   };
 
   return (
-    <>
-      <button onClick={toggleMenu} className="nav-bar-profile-button nav-bar-icons">
+    <div className="button-wrapper">
+      <button onClick={toggleMenu} className="nav-bar-profile-button nav-bar-icons nav-bar-icon-buttons">
         <FaUserCircle />
       </button>
       {showMenu && (
@@ -86,7 +86,7 @@ function ProfileButton() {
           )}
         </ul>
       )}
-    </>
+    </div>
   );
 }
 
