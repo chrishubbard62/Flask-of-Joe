@@ -126,7 +126,7 @@
     grid-template-columns: 1fr 1fr;
   }
   .banner-image {
-    background: url('./banner.jpg');
+    background: url('/banner.jpg');
     background-size: 150%;
     height: 25rem;
     width: 100%;
