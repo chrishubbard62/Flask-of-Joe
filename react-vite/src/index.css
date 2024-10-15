@@ -1,6 +1,17 @@
 /* TODO: Add sitewide styles */
 body {
   background-color: #f2eedc;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  flex:1;
 }
 
 button {
