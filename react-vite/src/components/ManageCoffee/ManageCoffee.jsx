@@ -39,7 +39,6 @@ const ManageCoffee = () => {
                                 <img className='manage-coffees-image' src={coffee.coffeeImages[0].url} />
                                 <div className='manage-coffee-card-details'>
                                     <div>{coffee.name}</div>
-                                    <div>{coffee.description}</div>
                                     <div>price: {coffee.price}</div>
                                     <div>region: {coffee.region}</div>
                                     <div>roast: {coffee.roast}</div>

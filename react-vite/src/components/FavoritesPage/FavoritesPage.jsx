@@ -24,12 +24,6 @@ const FavoritesPage = () => {
             <div className='your-favs-second-nav'>
                 <h2 className='title-favs'>Your Favorites</h2>
             </div>
-            {/* <div className='search-bar-area'>
-                <input className='search-input' type='search' placeholder='Search your favorites' />
-                <FaSearch className='favorites-search-icon' />
-            </div> */}
-
-
             <div className='div-card-container'>
                 {favs && favs.map(fav => {
                     return (
