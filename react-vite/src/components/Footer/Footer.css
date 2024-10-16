@@ -7,6 +7,14 @@
     margin-top: 20px;
 }
 
+.inner-footer-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 90rem;
+    align-items: center;
+}
+
 .personal-div-individual {
     display: flex;
 }
