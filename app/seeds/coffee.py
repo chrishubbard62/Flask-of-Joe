@@ -19,7 +19,7 @@ coffee2 = Coffee(name='Morning Bliss',
 coffee3 = Coffee(name='Espresso Delight',
                     price=22.50,
                     description='Rich and bold, perfect for espresso lovers!',
-                    roast='Dark',
+                    roast='Espresso',
                     region='Italy',
                     owner=bobbie)
 coffee4 = Coffee(name='Tropical Brew',
@@ -31,7 +31,7 @@ coffee4 = Coffee(name='Tropical Brew',
 coffee5 = Coffee(name='Highland Reserve',
                     price=20.00,
                     description='A premium coffee with complex flavors!',
-                    roast='Espresso',
+                    roast='Dark',
                     region='Colombia',
                     owner=marnie)
 
