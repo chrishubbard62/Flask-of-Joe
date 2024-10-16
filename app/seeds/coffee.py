@@ -40,7 +40,7 @@ coffee6 = Coffee(
     name="Ethiopian Yirgacheffe",
     price=18.99,
     description="A classic Ethiopian coffee known for its delicate floral aroma and bright acidity. Notes of jasmine, citrus, and berry dance on the palate, making it a favorite among light roast enthusiasts.",
-    roast="light",
+    roast="Light",
     region="Yirgacheffe, Ethiopia",
     owner=demo
 )
@@ -49,7 +49,7 @@ coffee7 = Coffee(
     name="Guatemalan Antigua",
     price=17.50,
     description="A balanced and flavorful coffee from the Antigua region of Guatemala. Expect notes of stone fruit, citrus, and a hint of chocolate. The acidity is bright and refreshing, making it a versatile choice for both pour-over and espresso.",
-    roast="light",
+    roast="Light",
     region="Antigua, Guatemala",
     owner=demo
 )
@@ -58,7 +58,7 @@ coffee8 = Coffee(
     name="Colombian Supremo",
     price=16.99,
     description="A smooth and well-rounded Colombian coffee with a medium-bodied profile. Notes of chocolate, caramel, and a touch of nuttiness are balanced by a pleasant acidity. It's a classic choice for those who enjoy a balanced cup of coffee.",
-    roast="medium",
+    roast="Medium",
     region="Colombia",
     owner=demo
 )
@@ -67,7 +67,7 @@ coffee9 = Coffee(
     name="Kenyan AA",
     price=19.99,
     description="A bold and flavorful Kenyan coffee known for its bright acidity and complex flavor profile. Expect notes of berry, spice, and a touch of citrus. The finish is long and satisfying, making it a favorite among coffee connoisseurs.",
-    roast="medium",
+    roast="Medium",
     region="Kenya",
     owner=demo
 )
@@ -76,7 +76,7 @@ coffee10 = Coffee(
     name="Sumatra Mandheling",
     price=15.99,
     description="A rich and full-bodied Indonesian coffee with a low acidity and a hint of bitterness. Notes of earth, spice, and a touch of chocolate dominate the palate. It's a classic choice for those who enjoy a bold and flavorful cup of coffee.",
-    roast="dark",
+    roast="Dark",
     region="Sumatra, Indonesia",
     owner=marnie
 )
@@ -85,7 +85,7 @@ coffee11 = Coffee(
     name="French Roast",
     price=16.50,
     description="A strong and smoky coffee with a bold flavor profile. The acidity is low, and the body is full. Notes of dark chocolate, caramel, and a hint of smoke dominate the palate. It's a classic choice for those who enjoy a strong and flavorful cup of coffee.",
-    roast="dark",
+    roast="Dark",
     region="Blend",
     owner=marnie
 )
@@ -94,7 +94,7 @@ coffee12 = Coffee(
     name="Italian Espresso Blend",
     price=18.99,
     description="A balanced blend of beans from various regions, designed for espresso. Expect a rich and full-bodied cup with notes of dark chocolate, caramel, and a hint of nuttiness. The crema is thick and velvety, making it a perfect choice for espresso-based drinks.",
-    roast="espresso",
+    roast="Espresso",
     region="Blend",
     owner=bobbie
 )
@@ -103,7 +103,7 @@ coffee13 = Coffee(
     name="Brazilian Espresso",
     price=17.50,
     description="A smooth and creamy Brazilian coffee with a medium-bodied profile. Notes of chocolate, caramel, and a hint of nuttiness are balanced by a pleasant acidity. It's a classic choice for those who enjoy a well-balanced espresso with a rich and creamy texture.",
-    roast="espresso",
+    roast="Espresso",
     region="Brazil",
     owner=bobbie
 )
