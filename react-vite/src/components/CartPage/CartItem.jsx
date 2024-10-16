@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteCartItemThunk, updateCartItemThunk } from "../../redux/cart";
+import { updateCartItemThunk } from "../../redux/cart";
 import "./CartPage.css";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import DeleteCartItemModal from "../DeleteCartItemModal/DeleteCartItemModal";
@@ -20,7 +20,7 @@ const CartItem = ({ coffee, data, cartItems, calculateTotal }) => {
     useEffect(() => {
         setQuantity(data[coffee.id])
         calculateTotal(data)
-    }, [data, coffee.id])
+    }, [data, coffee.id, calculateTotal])
     // console.log(cartItem)
 
     const confirm = () => {
