@@ -39,25 +39,27 @@ function LoginFormModal() {
       <form onSubmit={handleSubmit}>
         <label>
           Email
+          </label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
+
 
         {errors.email && <p className="login-modal-errors">{errors.email}</p>}
 
         <label>
           Password
+          </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
+
 
         {errors.password && <p className="login-modal-errors">{errors.password}</p>}
         <button type="submit">Log In</button>

@@ -2,6 +2,7 @@
   width: fit-content;
   padding-left: 50px;
   padding-right: 50px;
+  width: 250px;
 }
 
 .signup-modal-whole {
@@ -11,12 +12,15 @@
 .signup-modal-form {
   display: flex;
   flex-direction: column;
-  gap:15px;
+  align-items: center;
+  gap:10px;
 }
 
 .signup-modal-form input {
-  margin-left: 5px;
   height: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .signup-modal-form button {
