@@ -29,7 +29,8 @@ const CartItem = ({ coffee, data, cartItems, calculateTotal }) => {
 
     return (
         <div className="cart-item-whole">
-            <img src={coffee.coffeeImages[0].url} />
+            <div style={{ backgroundImage: `url(${coffee.coffeeImages[0].url})` }} className='image-in-cart' ></div>
+            {/* <img src={coffee.coffeeImages[0].url} /> */}
 
 
 
