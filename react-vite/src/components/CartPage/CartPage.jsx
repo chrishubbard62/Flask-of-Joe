@@ -36,7 +36,7 @@ export default function CartPage() {
   useEffect(() => {
     dispatch(getCartThunk())
     dispatch(getCoffeesThunk())
-    if(data.id){
+    if (data.id) {
       dispatch(getCartItemsThunk(data.id))
     }
     calculateTotal(data)
@@ -64,26 +64,28 @@ export default function CartPage() {
     <div className="cart-page-whole">
       <h2>{itemCaculator(cartCoffees)}</h2>
 
-    {cartCoffees?.length > 0 ? (
-      <div className="cart-page-item-subtotal">
-        <div className="cart-page-cart-items">
-          {cartCoffees.map((coffee) => {
-            return (<CartItem key={coffee.id} coffee={coffee} data={data} cartItems={cartItems} calculateTotal={calculateTotal} />)
-          })}
-        </div>
-
-        <div className="cart-page-cart-total">
-          <h2>CART TOTALS</h2>
-            <div className="cart-page-cart-subtotal">
-              <h3>Subtotal</h3>
-              <p>${subtotal}</p>
+      {cartCoffees?.length > 0 ? (
+        <div className="cart-page-item-subtotal">
+          <div className="cart-page-cart-items">
+            {cartCoffees.map((coffee) => {
+              return (<CartItem key={coffee.id} coffee={coffee} data={data} cartItems={cartItems} calculateTotal={calculateTotal} />)
+            })}
           </div>
-          <button onClick={handleCheckout}>checkout</button>
+
+          <div className="cart-page-cart-total">
+            <div style={{padding: '20px'}}>
+              <h2>CART TOTALS</h2>
+              <div className="cart-page-cart-subtotal">
+                <h3>Subtotal</h3>
+                <p>${subtotal}</p>
+              </div>
+              <button onClick={handleCheckout}>checkout</button>
+            </div>
+          </div>
         </div>
-      </div>
       ) : (
-    <div></div>)
-    }
+        <div></div>)
+      }
 
     </div>
   )
