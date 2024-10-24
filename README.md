@@ -4,6 +4,23 @@ Welcome to Flask of Joe, your ultimate destination for discovering and savoring 
 
 [Live site](https://flask-of-joe.onrender.com/)
 
+## Collaborators
+
+Chris Hubbard:
+
+[Git-Hub](https://github.com/chrishubbard62)
+[LinkedIn](https://www.linkedin.com/in/chris-hubbard-93409324/)
+
+Gerardo Bonilla Jr (Lalo):
+
+[Git-Hub](https://github.com/Lalo-B)
+[LinkedIn](https://www.linkedin.com/in/gerardo-bonilla-jr-47453b1bb/)
+
+Yicheng Wang:
+
+[Git-Hub](https://github.com/lunaako)
+[LinkedIn](https://www.linkedin.com/in/yicheng-wang-b43604261/)
+
 ## Technologies
 
 ### Backend
